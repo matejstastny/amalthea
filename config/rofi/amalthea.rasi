@@ -1,0 +1,104 @@
+/* amalthea ember - rofi
+ * one centred column, no mouse affordances, no icons bigger than the text.
+ * the asahi launcher is a single list you type into and press enter; this is
+ * the same shape. */
+
+* {
+	base:     #16100f;
+	surface:  #241a18;
+	overlay:  #30231f;
+	muted:    #4a3832;
+	dim:      #a8928aff;
+	text:     #f0e4deff;
+	ember:    #c4745aff;
+	amber:    #c9a05eff;
+
+	background-color: transparent;
+	text-color:       @text;
+	margin:           0;
+	padding:          0;
+	spacing:          0;
+}
+
+window {
+	transparency:     "real";
+	location:         center;
+	anchor:           center;
+	width:            520px;
+	border-radius:    12px;
+	border:           1px;
+	border-color:     @muted;
+	background-color: @base;
+	padding:          0;
+}
+
+mainbox {
+	children: [ inputbar, listview ];
+	padding:  10px;
+	spacing:  8px;
+}
+
+inputbar {
+	children:         [ prompt, entry ];
+	background-color: @surface;
+	border-radius:    8px;
+	padding:          10px 12px;
+	spacing:          10px;
+}
+
+prompt {
+	text-color:       @ember;
+	vertical-align:   0.5;
+}
+
+entry {
+	placeholder:        "";
+	placeholder-color:  @dim;
+	vertical-align:     0.5;
+	cursor:             text;
+}
+
+listview {
+	lines:        8;
+	columns:      1;
+	fixed-height: false;
+	scrollbar:    false;
+	spacing:      2px;
+	cycle:        true;
+	dynamic:      true;
+}
+
+element {
+	padding:       7px 12px;
+	border-radius: 8px;
+	spacing:       10px;
+	cursor:        pointer;
+}
+
+element normal.normal   { background-color: transparent; text-color: @dim;   }
+element alternate.normal{ background-color: transparent; text-color: @dim;   }
+element selected.normal { background-color: @overlay;    text-color: @text;  }
+element normal.urgent   { text-color: @amber; }
+element selected.urgent { background-color: @overlay; text-color: @amber; }
+element normal.active   { text-color: @ember; }
+element selected.active { background-color: @overlay; text-color: @ember; }
+
+element-icon {
+	size:           18px;
+	vertical-align: 0.5;
+}
+
+element-text {
+	vertical-align: 0.5;
+	text-color:     inherit;
+}
+
+message {
+	background-color: @surface;
+	border-radius:    8px;
+	padding:          10px 12px;
+}
+
+textbox {
+	text-color: @dim;
+}

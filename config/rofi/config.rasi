@@ -1,0 +1,22 @@
+configuration {
+	modes:                       "drun,run,window";
+	font:                        "Iosevka Nerd Font 11";
+	show-icons:                  true;
+	icon-theme:                  "Papirus-Dark";
+	drun-display-format:         "{name}";
+	display-drun:                "run";
+	display-run:                 "cmd";
+	display-window:              "window";
+	drun-match-fields:           "name,generic,exec,keywords";
+	matching:                    "fuzzy";
+	sort:                        true;
+	sorting-method:              "fzf";
+	terminal:                    "alacritty";
+	kb-row-up:                   "Up,Control+k";
+	kb-row-down:                 "Down,Control+j";
+	kb-accept-entry:             "Return,KP_Enter";
+	kb-remove-to-eol:            "";
+	kb-cancel:                   "Escape,Alt+space";
+}
+
+@theme "amalthea"

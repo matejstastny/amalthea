@@ -1,0 +1,90 @@
+# amalthea - dunst
+
+[global]
+	monitor = 0
+	follow = none
+	width = (240, 380)
+	height = (0, 160)
+	origin = top-right
+	offset = (10, 38)
+	scale = 0
+	notification_limit = 5
+
+	progress_bar = true
+	progress_bar_height = 6
+	progress_bar_frame_width = 0
+	progress_bar_min_width = 180
+	progress_bar_max_width = 360
+	progress_bar_corner_radius = 3
+
+	indicate_hidden = yes
+	transparency = 6
+	separator_height = 4
+	padding = 12
+	horizontal_padding = 14
+	frame_width = 1
+	corner_radius = 10
+	gap_size = 6
+	separator_color = frame
+
+	sort = yes
+	font = Iosevka Nerd Font 10
+	line_height = 0
+	markup = full
+	format = "<b>%s</b>\n%b"
+	alignment = left
+	vertical_alignment = center
+	show_age_threshold = 60
+	ellipsize = end
+	ignore_newline = no
+	stack_duplicates = true
+	hide_duplicate_count = false
+	show_indicators = no
+
+	enable_recursive_icon_lookup = true
+	icon_theme = Papirus-Dark
+	icon_position = left
+	min_icon_size = 24
+	max_icon_size = 32
+
+	sticky_history = yes
+	history_length = 40
+	dmenu = /usr/bin/rofi -dmenu -p dunst
+	browser = /usr/bin/xdg-open
+	always_run_script = true
+	title = Dunst
+	class = Dunst
+	corner_radius = 10
+	ignore_dbusclose = false
+	force_xwayland = false
+	mouse_left_click = close_current
+	mouse_middle_click = do_action, close_current
+	mouse_right_click = close_all
+
+[urgency_low]
+	background = "#1b1413"
+	foreground = "#a8928a"
+	frame_color = "#30231f"
+	timeout = 5
+
+[urgency_normal]
+	background = "#241a18"
+	foreground = "#f0e4de"
+	frame_color = "#4a3832"
+	timeout = 8
+
+[urgency_critical]
+	background = "#241a18"
+	foreground = "#f0e4de"
+	frame_color = "#a85540"
+	timeout = 0
+
+# volume and brightness replace themselves instead of stacking up
+[osd]
+	appname = "amalthea-osd"
+	format = "%s"
+	timeout = 1
+	urgency = low
+	background = "#241a18"
+	foreground = "#f0e4de"
+	frame_color = "#c4745a"

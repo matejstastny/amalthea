@@ -1,0 +1,121 @@
+// elara handcrafted <3
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+
+    "logo": { "type": "none" },
+
+    "display": {
+        "separator": "  ",
+        "color": { "separator": "38;2;74;56;50" },
+        "percent": {
+            "type": 11,
+            "color": {
+                "green": "38;2;133;166;155",
+                "yellow": "38;2;217;180;120",
+                "red": "38;2;201;160;94"
+            }
+        },
+        "bar": {
+            "border": { "left": "", "right": "  " },
+            "char": { "elapsed": "━", "total": "━" },
+            "width": 10
+        },
+        "constants": ["──────────────────────────────"]
+    },
+
+    "modules": [
+        "break",
+
+        {
+            "type": "title",
+            "key": " ",
+            "format": "{#38;2;201;160;94}{user-name}{#38;2;74;56;50}  ·  {#38;2;133;166;155}{host-name}"
+        },
+        {
+            "type": "custom",
+            "format": "{#38;2;74;56;50}  {$1}  {#38;2;201;160;94}✦"
+        },
+        "break",
+
+        {
+            "type": "os",
+            "keyWidth": 11,
+            "key": "{#38;2;201;160;94}{icon} {#38;2;196;116;90}os"
+        },
+        {
+            "type": "kernel",
+            "keyWidth": 11,
+            "key": "{#38;2;201;160;94}{icon} {#38;2;196;116;90}kernel"
+        },
+        {
+            "type": "uptime",
+            "keyWidth": 11,
+            "key": "{#38;2;201;160;94}{icon} {#38;2;196;116;90}uptime"
+        },
+        {
+            "type": "packages",
+            "keyWidth": 11,
+            "key": "{#38;2;201;160;94}{icon} {#38;2;196;116;90}pkgs"
+        },
+        "break",
+
+        {
+            "type": "shell",
+            "keyWidth": 11,
+            "key": "{#38;2;201;160;94}{icon} {#38;2;196;116;90}shell"
+        },
+        {
+            "type": "wm",
+            "keyWidth": 11,
+            "key": "{#38;2;201;160;94}{icon} {#38;2;196;116;90}wm"
+        },
+        {
+            "type": "terminal",
+            "keyWidth": 11,
+            "key": "{#38;2;201;160;94}{icon} {#38;2;196;116;90}term"
+        },
+        {
+            "type": "terminalfont",
+            "keyWidth": 11,
+            "key": "{#38;2;201;160;94}{icon} {#38;2;196;116;90}font"
+        },
+        "break",
+
+        {
+            "type": "cpu",
+            "keyWidth": 11,
+            "key": "{#38;2;201;160;94}{icon} {#38;2;196;116;90}cpu"
+        },
+        {
+            "type": "gpu",
+            "keyWidth": 11,
+            "key": "{#38;2;201;160;94}{icon} {#38;2;196;116;90}gpu"
+        },
+        {
+            "type": "memory",
+            "keyWidth": 11,
+            "key": "{#38;2;201;160;94}{icon} {#38;2;196;116;90}ram"
+        },
+        {
+            "type": "swap",
+            "keyWidth": 11,
+            "key": "{#38;2;201;160;94}{icon} {#38;2;196;116;90}swap"
+        },
+        {
+            "type": "disk",
+            "keyWidth": 11,
+            "key": "{#38;2;201;160;94}{icon} {#38;2;196;116;90}disk",
+            "folders": "/"
+        },
+        "break",
+
+        {
+            "type": "custom",
+            "format": "{#38;2;74;56;50}  {$1}  {#38;2;201;160;94}✦"
+        },
+        "break",
+
+        { "type": "colors", "symbol": "circle", "paddingLeft": 2 },
+        "break"
+    ]
+}

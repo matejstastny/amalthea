@@ -1,0 +1,42 @@
+/* amalthea ember - gtk accents.
+ * Adwaita-dark does the heavy lifting; this only moves the blue accent and the
+ * window background onto the ember ramp so gtk dialogs sit next to a terminal
+ * without looking borrowed. */
+
+@define-color amalthea_base    #16100f;
+@define-color amalthea_surface #241a18;
+@define-color amalthea_overlay #30231f;
+@define-color amalthea_muted   #4a3832;
+@define-color amalthea_text    #f0e4de;
+@define-color amalthea_dim     #a8928a;
+@define-color amalthea_mantle  #1b1413;
+@define-color amalthea_ember   #c4745a;
+
+@define-color accent_color       @amalthea_ember;
+@define-color accent_bg_color    @amalthea_ember;
+@define-color accent_fg_color    @amalthea_base;
+@define-color theme_selected_bg_color @amalthea_ember;
+@define-color theme_selected_fg_color @amalthea_base;
+
+@define-color window_bg_color    @amalthea_base;
+@define-color window_fg_color    @amalthea_text;
+@define-color view_bg_color      @amalthea_base;
+@define-color view_fg_color      @amalthea_text;
+@define-color theme_bg_color     @amalthea_base;
+@define-color theme_fg_color     @amalthea_text;
+@define-color theme_base_color   @amalthea_base;
+@define-color theme_text_color   @amalthea_text;
+
+@define-color headerbar_bg_color @amalthea_surface;
+@define-color headerbar_fg_color @amalthea_text;
+@define-color sidebar_bg_color   @amalthea_mantle;
+@define-color card_bg_color      @amalthea_surface;
+@define-color popover_bg_color   @amalthea_surface;
+@define-color dialog_bg_color    @amalthea_surface;
+@define-color borders            @amalthea_muted;
+@define-color insensitive_fg_color @amalthea_dim;
+
+/* the stock focus ring is a blue halo and nothing else in the session is blue */
+*:focus-visible {
+	outline-color: alpha(@amalthea_ember, 0.6);
+}

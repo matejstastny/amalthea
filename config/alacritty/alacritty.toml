@@ -1,0 +1,133 @@
+# amalthea - alacritty
+# GM45 only exposes OpenGL 2.1 / GLES 2.0, which rules out kitty and ghostty
+# (both want GL 3.3). alacritty's GLES2 path runs fine on the crocus driver.
+
+[env]
+TERM = "alacritty"
+
+[window]
+padding = { x = 10, y = 8 }
+dynamic_padding = false
+decorations = "none"
+opacity = 0.94
+dynamic_title = true
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[font]
+size = 10.5
+normal = { family = "IosevkaTerm Nerd Font", style = "Regular" }
+bold = { family = "IosevkaTerm Nerd Font", style = "Bold" }
+italic = { family = "IosevkaTerm Nerd Font", style = "Italic" }
+bold_italic = { family = "IosevkaTerm Nerd Font", style = "Bold Italic" }
+offset = { x = 0, y = 1 }
+
+[cursor]
+style = { shape = "Block", blinking = "Off" }
+unfocused_hollow = true
+
+[selection]
+save_to_clipboard = true
+
+[mouse]
+hide_when_typing = true
+
+# colors: amalthea ember -----------------------------------------------------
+
+[colors.primary]
+background = "#16100f"
+foreground = "#f0e4de"
+dim_foreground = "#a8928a"
+bright_foreground = "#fff8f4"
+
+[colors.cursor]
+text = "#16100f"
+cursor = "#c4745a"
+
+[colors.vi_mode_cursor]
+text = "#16100f"
+cursor = "#c9a05e"
+
+[colors.selection]
+text = "CellForeground"
+background = "#30231f"
+
+[colors.search.matches]
+foreground = "#16100f"
+background = "#c9a05e"
+
+[colors.search.focused_match]
+foreground = "#16100f"
+background = "#c4745a"
+
+[colors.footer_bar]
+foreground = "#f0e4de"
+background = "#241a18"
+
+[colors.hints.start]
+foreground = "#16100f"
+background = "#c9a05e"
+
+[colors.hints.end]
+foreground = "#16100f"
+background = "#a8928a"
+
+[colors.normal]
+black   = "#241a18"
+red     = "#c4745a"
+green   = "#96a06b"
+yellow  = "#c9a05e"
+blue    = "#7a8fa6"
+magenta = "#b07a8a"
+cyan    = "#85a69b"
+white   = "#d6c5bd"
+
+[colors.bright]
+black   = "#4a3832"
+red     = "#d98a70"
+green   = "#a8b27d"
+yellow  = "#d9b478"
+blue    = "#93a8bd"
+magenta = "#c4919f"
+cyan    = "#9cbdb1"
+white   = "#f0e4de"
+
+[colors.dim]
+black   = "#1b1413"
+red     = "#a85540"
+green   = "#79824f"
+yellow  = "#a8834a"
+blue    = "#5f7285"
+magenta = "#8f616e"
+cyan    = "#6b877e"
+white   = "#a8928a"
+
+# keybinds -------------------------------------------------------------------
+# tmux owns splits and tabs, so alacritty only needs the basics
+
+[[keyboard.bindings]]
+key = "C"
+mods = "Control|Shift"
+action = "Copy"
+
+[[keyboard.bindings]]
+key = "V"
+mods = "Control|Shift"
+action = "Paste"
+
+[[keyboard.bindings]]
+key = "Plus"
+mods = "Control"
+action = "IncreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Minus"
+mods = "Control"
+action = "DecreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Key0"
+mods = "Control"
+action = "ResetFontSize"

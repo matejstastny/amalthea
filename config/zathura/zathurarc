@@ -1,0 +1,42 @@
+# amalthea - zathura
+
+set font "Iosevka Nerd Font 10"
+set selection-clipboard clipboard
+set adjust-open "best-fit"
+set guioptions ""
+set statusbar-h-padding 8
+set statusbar-v-padding 6
+set page-padding 4
+set scroll-step 80
+set smooth-scroll true
+
+set default-bg          "#16100f"
+set default-fg          "#f0e4de"
+set statusbar-bg        "#241a18"
+set statusbar-fg        "#a8928a"
+set inputbar-bg         "#241a18"
+set inputbar-fg         "#f0e4de"
+set notification-bg     "#241a18"
+set notification-fg     "#f0e4de"
+set notification-error-bg "#241a18"
+set notification-error-fg "#a85540"
+set notification-warning-bg "#241a18"
+set notification-warning-fg "#c9a05e"
+set highlight-color     "#c9a05e"
+set highlight-active-color "#c4745a"
+set completion-bg       "#241a18"
+set completion-fg       "#a8928a"
+set completion-highlight-bg "#30231f"
+set completion-highlight-fg "#f0e4de"
+set index-bg            "#16100f"
+set index-fg            "#f0e4de"
+set index-active-bg     "#30231f"
+set index-active-fg     "#f0e4de"
+
+# a white page next to an ember terminal is a flashbang; recolor instead
+set recolor true
+set recolor-keephue true
+set recolor-darkcolor "#f0e4de"
+set recolor-lightcolor "#16100f"
+map r recolor
+map <C-r> reload
