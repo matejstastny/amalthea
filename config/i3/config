@@ -60,6 +60,8 @@ bindsym $mod+k           exec --no-startup-id $dots/scripts/kblayout.sh
 bindsym $mod+Escape      exec --no-startup-id $dots/scripts/powermenu.sh
 bindsym $mod+Shift+n     exec --no-startup-id $dots/scripts/tailnet.sh
 bindsym $mod+Shift+b     exec --no-startup-id $dots/scripts/wallpaper.sh
+bindsym $mod+d           exec --no-startup-id $dots/scripts/display.sh menu
+bindsym XF86Display      exec --no-startup-id $dots/scripts/display.sh menu
 
 # utils ----------------------------------------------------------------------
 

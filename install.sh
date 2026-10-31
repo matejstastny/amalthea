@@ -130,7 +130,7 @@ if [[ $SHELL != */zsh ]]; then
 fi
 
 log "creating directories"
-mkdir -p "$HOME"/{devel,notes,wallpapers,pictures/screenshots,.local/state/amalthea,.local/share/tmux}
+mkdir -p "$HOME"/{devel,notes,pictures/screenshots,.local/state/amalthea,.local/share/tmux}
 xdg-user-dirs-update 2>/dev/null
 
 # the old layout had everything under dotfiles/amalthea/; those symlinks now
@@ -138,6 +138,26 @@ xdg-user-dirs-update 2>/dev/null
 log "clearing dangling symlinks from the previous layout"
 find "$HOME" -maxdepth 1 -xtype l -print -delete 2>/dev/null
 find "$HOME/.config" -maxdepth 1 -xtype l -print -delete 2>/dev/null
+
+# bin/link refuses to touch a path that is a real file, which is right, but it
+# means a leftover from the old setup silently wins. move those aside first.
+conf_section() { sed -n "/^\\[$1\\]/,/^\\[/{/^\\[/d;/^$/d;/^[#;]/d;p}" "$root/link.conf"; }
+
+while IFS='=' read -r _rel target; do
+	[[ -z ${target:-} ]] && continue
+	t="${target/#\~/$HOME}"
+	if [[ -e $t && ! -L $t ]]; then
+		log "moving existing $t to $t.bak"
+		mv -f "$t" "$t.bak"
+	fi
+done < <(conf_section file_links)
+
+while IFS='=' read -r _name target; do
+	[[ -z ${target:-} ]] && continue
+	t="${target/#\~/$HOME}"
+	# only an empty dir: a populated one is the user's data, leave it alone
+	[[ -d $t && ! -L $t ]] && rmdir "$t" 2>/dev/null
+done < <(conf_section path_overrides)
 
 log "linking configs"
 "$root/bin/link"

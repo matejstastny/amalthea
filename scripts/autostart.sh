@@ -27,11 +27,9 @@ once nm-applet nm-applet --indicator
 once blueman-applet blueman-applet
 once polkit-gnome-authentication-agent-1 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
-# bar: always restarted, it needs to re-read outputs after an xrandr change
-"$dots/config/polybar/launch.sh"
-
-# wallpaper
-"$dots/scripts/wallpaper.sh" restore
+# displays first: the bar binds one instance per output, so it has to come
+# after xrandr has settled
+"$dots/scripts/display.sh" auto
 
 # input: match the asahi hyprland settings
 xset r rate 190 30
