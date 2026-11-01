@@ -25,7 +25,7 @@ under the same key.
 | compositing    | built in   | picom      | `xrender` backend; glx needs GL 3.0 |
 | screenshots    | grim/slurp | maim/slop  | |
 | clipboard      | wl-clipboard | xclip    | |
-| lock           | Quickshell | i3lock + xss-lock | |
+| lock           | Quickshell | i3lock-color + xss-lock | stock i3lock hardcodes a green ring |
 | editor         | neovim     | neovim     | same config, ember palette |
 | multiplexer    | tmux       | tmux       | same config |
 
