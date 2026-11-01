@@ -181,6 +181,10 @@ Description=reapply the amalthea display layout after a monitor hotplug
 [Service]
 Type=oneshot
 ExecStart=/usr/local/bin/amalthea-display-hotplug
+# the hook restarts polybar, and those live in this unit's cgroup. the default
+# KillMode takes the whole group down the moment ExecStart returns, which
+# leaves the layout correct and no bar on it
+KillMode=process
 EOF
 # udev kills anything slow started from RUN+=, so it only pokes the unit
 sudo tee /etc/udev/rules.d/95-amalthea-display.rules >/dev/null <<'EOF'
