@@ -31,6 +31,8 @@ pkgs=(
 	alacritty tmux zsh zsh-autosuggestions zsh-syntax-highlighting
 	starship zoxide eza fzf ripgrep fd bat btop yazi lazygit
 	neovim git github-cli jq trash-cli fastfetch man-db man-pages
+	# the nvim config pins clangd to the system binary, not mason's
+	clang
 	# mason installs its js-based language servers with npm; nothing else here
 	# uses it. note bun will not run on this cpu at all - no sse4.2.
 	nodejs npm
@@ -169,6 +171,23 @@ log "linking configs"
 if [[ ! -s "$HOME/.local/state/amalthea/wallpaper" ]]; then
 	printf '%s\n' "$HOME/wallpapers/amalthea-ember.png" > "$HOME/.local/state/amalthea/wallpaper"
 fi
+
+log "monitor hotplug hook"
+sudo install -Dm755 "$root/scripts/display-hotplug.sh" /usr/local/bin/amalthea-display-hotplug
+sudo tee /etc/systemd/system/amalthea-display.service >/dev/null <<'EOF'
+[Unit]
+Description=reapply the amalthea display layout after a monitor hotplug
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/amalthea-display-hotplug
+EOF
+# udev kills anything slow started from RUN+=, so it only pokes the unit
+sudo tee /etc/udev/rules.d/95-amalthea-display.rules >/dev/null <<'EOF'
+ACTION=="change", SUBSYSTEM=="drm", RUN+="/bin/systemctl start --no-block amalthea-display.service"
+EOF
+sudo systemctl daemon-reload
+sudo udevadm control --reload-rules
 
 log "rebuilding the font cache"
 fc-cache -f >/dev/null 2>&1
