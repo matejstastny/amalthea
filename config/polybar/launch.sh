@@ -3,12 +3,16 @@
 
 pkill -x polybar 2>/dev/null
 # polybar refuses to bind a bar while the old one still holds the ipc socket
-while pgrep -x polybar >/dev/null; do sleep 0.2; done
+for _ in $(seq 1 50); do pgrep -x polybar >/dev/null || break; sleep 0.1; done
 
-if command -v polybar-msg >/dev/null; then
-	polybar-msg cmd quit >/dev/null 2>&1
-fi
+primary=$(xrandr --query | awk '/ connected primary/ {print $1; exit}')
 
 for m in $(polybar --list-monitors | cut -d: -f1); do
-	MONITOR="$m" polybar --reload main >/dev/null 2>&1 &
+	# only one bar may own the systray selection; hand it to the primary and
+	# the others come up without a tray instead of logging a failed grab
+	if [[ $m == "$primary" ]]; then
+		MONITOR="$m" TRAY_POS=right polybar --reload main >/dev/null 2>&1 &
+	else
+		MONITOR="$m" TRAY_POS=none polybar --reload main >/dev/null 2>&1 &
+	fi
 done

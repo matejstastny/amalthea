@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 #@ backlight control + osd
 
+# this panel's acpi_video0 exposes 16 levels, so percentage steps round away to
+# nothing - move it one hardware level at a time instead
 case "$1" in
-# 5%- rather than a flat step: the bottom of this panel's range is useful
-up)   brightnessctl set 5%+ -q ;;
-down) brightnessctl set 5%- -q ;;
+up)   brightnessctl set +1 -q ;;
+down) brightnessctl set 1- -q ;;
 *) echo "usage: ${0##*/} up|down" >&2; exit 1 ;;
 esac
 
-pct=$(brightnessctl -m | cut -d, -f4 | tr -d '%')
+read -r cur max < <(brightnessctl -m | awk -F, '{print $3, $5}')
+pct=$(( cur * 100 / max ))
 notify-send -a amalthea-osd -h "int:value:$pct" "󰃞  ${pct}%" -t 1200
