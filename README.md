@@ -48,17 +48,23 @@ not even list the 4K modes - 3840x2160 at 60 needs 594 MHz, which is HDMI 2.0,
 six years younger than this chipset. On a 4K panel 1080p is at least an exact
 2:1 integer scale, so it stays sharp rather than going soft.
 
-`extend` stacks the laptop *under* the external rather than beside it. That is
-deliberate: gen4 chips lose their tiled framebuffer once the screen gets wider
-than the fence stride allows, which drops SNA back to an untiled buffer and
-makes every 2D operation crawl. Stacking keeps the screen as wide as the
-external alone instead of as wide as both combined. `display.sh side` is there
-if you want them side by side anyway.
+`extend` puts the monitor to the right of the laptop, which is where it
+actually is, and lines the laptop's bottom edge up with the monitor's since it
+is the shorter panel and the lower one on the desk.
+
+`display.sh stacked` puts the monitor above instead. There was a theory that
+stacking would be measurably faster - a side-by-side screen is 3286px wide and
+gen4 chips lose their tiled framebuffer past a certain width, which would drop
+SNA to an untiled buffer. One clean x11perf run put scrolling at 5260/sec side
+by side against 6240/sec stacked, so if there is a cost it is small, and an
+earlier run claiming a 3x gap turned out to be measuring background load
+instead. Treat stacked as a layout option, not a performance fix.
 
 | key | does |
 | --- | --- |
 | `alt+d` | layout menu |
 | `display.sh auto` | extend if an external is attached, else laptop only |
+| `display.sh stacked` | monitor above the laptop instead of beside it |
 | `display.sh status` | what is connected and at what mode |
 
 A udev rule re-runs `display.sh auto` whenever a connector changes, so plugging
