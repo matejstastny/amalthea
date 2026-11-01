@@ -36,28 +36,33 @@ only_external() {
 	echo external > "$state"
 }
 
-# stacked, not side by side, and that is deliberate: gen4 chips lose tiled
-# framebuffers once the screen gets wider than the fence stride allows, which
-# drops SNA back to an untiled buffer and makes every 2D op crawl. stacking
-# keeps the width at the external's width instead of the sum of both.
+# the monitor sits to the right of the laptop, so the layout does too.
+# the laptop is the shorter panel and physically sits lower, so its bottom
+# edge is lined up with the external's rather than its top - the pointer can
+# cross at any height either way, since the short screen overlaps the tall one
+# completely whatever the offset.
 extend() {
-	local ew eh ix
-	ew=${ext_mode%x*}
+	local iy
+	iy=$(( ${ext_mode#*x} - ${int_mode#*x} ))
+	(( iy < 0 )) && iy=0
+
+	xrandr \
+		--output "$internal" --mode "$int_mode" --pos "0x${iy}" \
+		--output "$external" --mode "$ext_mode" --pos "${int_mode%x*}x0" --primary
+	echo extend > "$state"
+}
+
+# external above, laptop centred below it
+stacked() {
+	local eh ix
 	eh=${ext_mode#*x}
-	ix=$(( (ew - ${int_mode%x*}) / 2 ))
+	ix=$(( (${ext_mode%x*} - ${int_mode%x*}) / 2 ))
 	(( ix < 0 )) && ix=0
 
 	xrandr \
 		--output "$external" --mode "$ext_mode" --pos 0x0 --primary \
 		--output "$internal" --mode "$int_mode" --pos "${ix}x${eh}"
-	echo extend > "$state"
-}
-
-side_by_side() {
-	xrandr \
-		--output "$internal" --mode "$int_mode" --pos 0x0 \
-		--output "$external" --mode "$ext_mode" --pos "${int_mode%x*}x0" --primary
-	echo side > "$state"
+	echo stacked > "$state"
 }
 
 mirror() {
@@ -69,7 +74,7 @@ mirror() {
 case "${1:-auto}" in
 auto)     if have_external; then extend; else only_internal; fi ;;
 extend)   have_external && extend ;;
-side)     have_external && side_by_side ;;
+stacked)  have_external && stacked ;;
 external) have_external && only_external ;;
 laptop)   only_internal ;;
 mirror)   have_external && mirror ;;
@@ -80,18 +85,18 @@ status)
 	exit 0
 	;;
 menu)
-	choice=$(printf '󰍹  extend (laptop under)\n󰍺  side by side\n󰌢  laptop only\n󰍹  external only\n󰁤  mirror\n' \
+	choice=$(printf '󰍺  extend (monitor right)\n󰍹  stacked (monitor above)\n󰌢  laptop only\n󰍹  external only\n󰁤  mirror\n' \
 		| rofi -dmenu -i -p display -lines 5 -no-custom)
 	case "$choice" in
-	*"extend"*)       exec "$0" extend ;;
-	*"side by side"*) exec "$0" side ;;
+	*"extend"*)  exec "$0" extend ;;
+	*"stacked"*) exec "$0" stacked ;;
 	*"laptop only"*)  exec "$0" laptop ;;
 	*"external only"*) exec "$0" external ;;
 	*mirror*)         exec "$0" mirror ;;
 	*) exit 0 ;;
 	esac
 	;;
-*) echo "usage: ${0##*/} [auto|extend|side|external|laptop|mirror|menu|status]" >&2; exit 1 ;;
+*) echo "usage: ${0##*/} [auto|extend|stacked|external|laptop|mirror|menu|status]" >&2; exit 1 ;;
 esac
 
 # the bar has to be rebuilt: polybar binds one instance per output

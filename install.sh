@@ -169,7 +169,7 @@ log "linking configs"
 
 # seed a wallpaper so the first login is not a grey X root window
 if [[ ! -s "$HOME/.local/state/amalthea/wallpaper" ]]; then
-	printf '%s\n' "$HOME/wallpapers/amalthea-ember.png" > "$HOME/.local/state/amalthea/wallpaper"
+	printf '%s\n' "$HOME/wallpapers/wallpaper.jpg" > "$HOME/.local/state/amalthea/wallpaper"
 fi
 
 log "monitor hotplug hook"
