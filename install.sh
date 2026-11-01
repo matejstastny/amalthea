@@ -31,7 +31,7 @@ pkgs=(
 	alacritty tmux zsh zsh-autosuggestions zsh-syntax-highlighting
 	starship zoxide eza fzf ripgrep fd bat btop yazi lazygit
 	neovim git github-cli jq trash-cli fastfetch man-db man-pages
-	wget curl unzip p7zip rsync openssh less tree
+	wget curl unzip p7zip rsync openssh less tree python
 
 	# audio
 	pipewire pipewire-pulse pipewire-alsa pipewire-jack wireplumber

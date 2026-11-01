@@ -157,7 +157,11 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 # window rules ---------------------------------------------------------------
 # same workspace split as asahi: 1 terminal, 2 editor, 3 browser, 4 chat, 5 notes
 
-assign [class="Alacritty"]  $ws1
+# the browser is a single-window app and always wants the same place.
+# the terminal deliberately is NOT pinned: on asahi the kitty rule is fine
+# because the shell lives in one window, but here a terminal that refuses to
+# open on the workspace you are standing in is just in the way. session.sh
+# places its own terminal instead.
 assign [class="firefox"]    $ws3
 assign [class="helium"]     $ws3
 
