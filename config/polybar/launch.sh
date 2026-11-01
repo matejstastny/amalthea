@@ -5,7 +5,8 @@
 # script that made the change is also calling it - without a lock the two
 # interleave between the pkill and the relaunch and you end up with two bars
 # per output
-exec 9>"${XDG_RUNTIME_DIR:-/tmp}/amalthea-polybar.lock"
+# a fixed path, not XDG_RUNTIME_DIR: the udev hook runs through su without it
+exec 9>"/tmp/amalthea-polybar-$(id -u).lock"
 flock 9
 
 pkill -x polybar 2>/dev/null
