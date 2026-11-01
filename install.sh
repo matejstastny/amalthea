@@ -177,6 +177,10 @@ sudo install -Dm755 "$root/scripts/display-hotplug.sh" /usr/local/bin/amalthea-d
 sudo tee /etc/systemd/system/amalthea-display.service >/dev/null <<'EOF'
 [Unit]
 Description=reapply the amalthea display layout after a monitor hotplug
+# xrandr can itself emit a drm change event, so without a rate limit this
+# unit can retrigger itself in a loop
+StartLimitIntervalSec=10
+StartLimitBurst=2
 
 [Service]
 Type=oneshot
