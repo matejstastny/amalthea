@@ -10,6 +10,12 @@
 systemctl --user import-environment DISPLAY XAUTHORITY
 dbus-update-activation-environment --systemd DISPLAY XAUTHORITY 2>/dev/null
 
+# zprofile runs startx before zshrc exports anything, and /etc/locale.conf only
+# reaches a session through pam. without this, every x client that is not a
+# child of a login shell comes up in the C locale: btop refuses to start at all
+# and glyph handling breaks everywhere else
+export LANG="${LANG:-en_US.UTF-8}"
+
 export XDG_SESSION_TYPE=x11
 export XDG_CURRENT_DESKTOP=i3
 export GDK_BACKEND=x11

@@ -5,15 +5,26 @@ dir="$HOME/wallpapers"
 state="$HOME/.local/state/amalthea/wallpaper"
 mkdir -p "$(dirname "$state")" "$dir"
 
+# feh spreads a single image across the whole x screen, which on a stacked
+# dual head means each monitor gets a different crop of it. passing the file
+# once per output makes feh treat them as separate backgrounds instead.
+set_bg() {
+	local img="$1" n args=()
+	n=$(xrandr --listmonitors 2>/dev/null | awk 'NR==1 {print $2}')
+	[[ -z $n || $n -lt 1 ]] && n=1
+	for ((i = 0; i < n; i++)); do args+=("$img"); done
+	feh --no-fehbg --bg-fill "${args[@]}"
+}
+
 apply() {
 	printf '%s\n' "$1" > "$state"
-	feh --no-fehbg --bg-fill "$1"
+	set_bg "$1"
 }
 
 case "${1:-pick}" in
 restore)
 	if [[ -s $state ]] && [[ -f $(< "$state") ]]; then
-		feh --no-fehbg --bg-fill "$(< "$state")"
+		set_bg "$(< "$state")"
 	else
 		# no wallpaper yet: a flat base colour still looks deliberate
 		hsetroot -solid "#16100f" 2>/dev/null || xsetroot -solid "#16100f"

@@ -31,6 +31,9 @@ pkgs=(
 	alacritty tmux zsh zsh-autosuggestions zsh-syntax-highlighting
 	starship zoxide eza fzf ripgrep fd bat btop yazi lazygit
 	neovim git github-cli jq trash-cli fastfetch man-db man-pages
+	# mason installs its js-based language servers with npm; nothing else here
+	# uses it. note bun will not run on this cpu at all - no sse4.2.
+	nodejs npm
 	wget curl unzip p7zip rsync openssh less tree python
 
 	# audio
