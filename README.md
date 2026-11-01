@@ -39,6 +39,32 @@ matters on a 768px panel).
 
 `config/amalthea/palette.sh` is the source of truth; every script sources it.
 
+## displays
+
+The HDMI port drives an external monitor as a second head. One hard limit worth
+knowing: **GM45's HDMI is capped at a 165 MHz TMDS clock**, which is 1920x1080
+at 60 Hz and no more. A 4K panel negotiates down to 1080p and the kernel does
+not even list the 4K modes - 3840x2160 at 60 needs 594 MHz, which is HDMI 2.0,
+six years younger than this chipset. On a 4K panel 1080p is at least an exact
+2:1 integer scale, so it stays sharp rather than going soft.
+
+`extend` stacks the laptop *under* the external rather than beside it. That is
+deliberate: gen4 chips lose their tiled framebuffer once the screen gets wider
+than the fence stride allows, which drops SNA back to an untiled buffer and
+makes every 2D operation crawl. Stacking keeps the screen as wide as the
+external alone instead of as wide as both combined. `display.sh side` is there
+if you want them side by side anyway.
+
+| key | does |
+| --- | --- |
+| `alt+d` | layout menu |
+| `display.sh auto` | extend if an external is attached, else laptop only |
+| `display.sh status` | what is connected and at what mode |
+
+A udev rule re-runs `display.sh auto` whenever a connector changes, so plugging
+the monitor in extends onto it and unplugging folds back to the panel instead
+of stranding windows on a dead output.
+
 ## disks
 
 Root lives on the Kingston SSD. The 250 GB Seagate is mounted at `/mnt/hdd` and
@@ -92,3 +118,9 @@ exceptions). It never overwrites a real file.
   optimistic.
 - Firefox runs software WebRender (`MOZ_WEBRENDER=0` in `.xinitrc`) because GL
   2.1 cannot drive the hardware path.
+- **Bun will not run on this CPU at all.** A Core 2 Duo has no SSE4.2 and bun
+  needs it even in the baseline build. Node is fine. Anything else shipping
+  prebuilt x86-64-v2 binaries will die with SIGILL for the same reason.
+- `.xinitrc` exports `LANG` because `.zprofile` runs `startx` before `.zshrc`
+  gets a chance to. Without it every X client that is not a child of a login
+  shell comes up in the C locale and btop refuses to start.
