@@ -20,6 +20,7 @@ i3lock \
 	--ignore-empty-password \
 	--show-failed-attempts \
 	--color="$base" \
+	--clock \
 	--indicator \
 	--radius=90 \
 	--ring-width=6 \
