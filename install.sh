@@ -19,7 +19,7 @@ pkgs=(
 	xf86-video-intel mesa libva-intel-driver libva-utils
 
 	# session
-	i3-wm picom polybar rofi dunst i3lock xss-lock feh numlockx
+	i3-wm picom polybar rofi dunst xss-lock feh numlockx
 	maim slop xclip xdotool wmctrl imagemagick clipmenu rofimoji
 	papirus-icon-theme gnome-themes-extra adwaita-icon-theme
 
@@ -65,7 +65,9 @@ sudo pacman -S --noconfirm --needed "${pkgs[@]}" || warn "some packages failed, 
 
 # things that only live in the aur. all optional - the shell aliases that use
 # them degrade to "command not found" and nothing else breaks
-aur=(ps_mem scc gitmux)
+# i3lock-color replaces stock i3lock: the stock unlock ring is hardcoded
+# green and red and is the one thing here that cannot otherwise be themed
+aur=(ps_mem scc gitmux i3lock-color)
 if command -v paru >/dev/null; then
 	log "installing aur extras (${aur[*]})"
 	paru -S --noconfirm --needed --skipreview "${aur[@]}" 2>/dev/null \
