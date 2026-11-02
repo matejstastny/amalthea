@@ -5,7 +5,6 @@
 apps=(
 	"terminal|alacritty|Alacritty|1|alacritty"
 	"browser|helium|helium|3|helium-browser"
-
 )
 
 running() { pgrep -x "$1" >/dev/null; }
