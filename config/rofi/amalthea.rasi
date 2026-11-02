@@ -1,7 +1,8 @@
 /* amalthea steel - rofi
- * one centred column, square corners, no icons, no mouse affordances - a
- * dmenu with a box around it. the asahi launcher is a single list you type
- * into and press enter; this is the same shape. */
+ * one centred column, square corners, no icons, no prompt label, no mouse
+ * affordances - closer to dmenu than a launcher. fixed-height keeps the box
+ * the same size regardless of match count, so the input line never moves as
+ * you type. */
 
 * {
 	base:     #0a0a0b;
@@ -23,7 +24,7 @@
 window {
 	location:         center;
 	anchor:           center;
-	width:            520px;
+	width:            440px;
 	border-radius:    0px;
 	border:           1px;
 	border-color:     @muted;
@@ -33,21 +34,17 @@ window {
 
 mainbox {
 	children: [ inputbar, listview ];
-	padding:  10px;
-	spacing:  8px;
+	padding:  8px;
+	spacing:  6px;
 }
 
 inputbar {
-	children:         [ prompt, entry ];
-	background-color: @surface;
-	border-radius:    0px;
-	padding:          10px 12px;
-	spacing:          10px;
-}
-
-prompt {
-	text-color:       @ember;
-	vertical-align:   0.5;
+	children:         [ entry ];
+	background-color: transparent;
+	padding:          4px 2px;
+	spacing:          0;
+	border:           0px 0px 1px 0px;
+	border-color:     @overlay;
 }
 
 entry {
@@ -58,9 +55,9 @@ entry {
 }
 
 listview {
-	lines:        8;
+	lines:        6;
 	columns:      1;
-	fixed-height: false;
+	fixed-height: true;
 	scrollbar:    false;
 	spacing:      2px;
 	cycle:        true;

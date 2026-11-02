@@ -42,7 +42,14 @@ once blueman-applet blueman-applet
 
 # input: match the asahi hyprland settings
 xset r rate 190 30
-xset s 600
+
+# no idle screensaver/DPMS: xss-lock locks on screensaver activation, not just
+# real suspend, so a timeout here meant the screen blanked and the lock
+# screen popped up on its own after 10 minutes idle, with nothing actually
+# asleep. lid-close suspend (logind.conf.d) and the manual alt+shift+l lock
+# are untouched - this only kills the automatic idle trigger.
+xset s off
+xset -dpms
 for id in $(xinput list --id-only 2>/dev/null); do
 	xinput set-prop "$id" "libinput Natural Scrolling Enabled" 1 2>/dev/null
 	xinput set-prop "$id" "libinput Tapping Enabled" 1 2>/dev/null
