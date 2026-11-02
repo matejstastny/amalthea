@@ -1,0 +1,202 @@
+// meowsers :3
+{
+    "workbench.colorTheme": "Catppuccin Noir",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.editor.showTabs": "single",
+    "workbench.editor.empty.hint": "hidden",
+    "workbench.sideBar.location": "right",
+    "workbench.startupEditor": "none",
+    "workbench.tips.enabled": false,
+    "editor.minimap.enabled": false,
+    "breadcrumbs.enabled": false,
+
+    // sidebar & file explorer
+    "workbench.secondarySideBar.defaultVisibility": "hidden",
+    "explorer.sortOrder": "type",
+    "material-icon-theme.hidesExplorerArrows": true,
+    "workbench.tree.enableStickyScroll": false,
+    "workbench.tree.renderIndentGuides": "none",
+    "workbench.tree.indent": 16,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "explorer.decorations.badges": false,
+    "git.decorations.enabled": false,
+    "explorer.compactFolders": false,
+    "explorer.confirmPasteNative": false,
+
+    // style
+    "workbench.welcomePage.walkthroughs.openOnInstall": false,
+    "window.customMenuBarAltFocus": false,
+    "window.newWindowDimensions": "maximized",
+    "window.menuBarVisibility": "hidden",
+    "window.enableMenuBarMnemonics": false,
+    "window.customTitleBarVisibility": "never",
+    "window.titleBarStyle": "native",
+
+    // Cursor
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.cursorBlinking": "phase",
+    "editor.cursorStyle": "line",
+    "editor.cursorWidth": 2,
+    "workbench.colorCustomizations": {
+        "statusBarItem.remoteBackground": "#FFFFFF00",
+        "statusBarItem.remoteForeground": "#9DA5B4",
+        "statusBar.border": "#FFFFFF26",
+        "sideBar.border": "#FFFFFF26",
+        "panel.border": "#FFFFFF26"
+    },
+
+    // Typography
+    "editor.fontFamily": "Maple Mono NF",
+    "editor.fontSize": 12.5,
+    "editor.fontLigatures": false,
+    "editor.lineHeight": 1.7,
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "comment",
+                "settings": {
+                    "fontStyle": "italic"
+                }
+            }
+        ]
+    },
+
+    // Decorations & hints
+    "editor.stickyScroll.enabled": false,
+    "editor.colorDecorators": false,
+    "editor.codeLens": false,
+    "editor.lightbulb.enabled": "off",
+    "editor.matchBrackets": "never",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+
+    // Guides & highlights
+    "editor.tabSize": 4,
+    "editor.inlayHints.enabled": "off",
+    "editor.detectIndentation": false,
+    "editor.showFoldingControls": "mouseover",
+    "editor.guides.indentation": false,
+    "editor.renderWhitespace": "none",
+    "editor.selectionHighlight": false,
+
+    // Scrollbars
+    "editor.scrollbar.horizontal": "hidden",
+    "editor.scrollbar.vertical": "hidden",
+    "editor.scrollbar.verticalScrollbarSize": 0,
+    "editor.overviewRulerBorder": false,
+    "editor.hideCursorInOverviewRuler": true,
+
+    // Other
+    "editor.snippetSuggestions": "top",
+    "files.autoSave": "afterDelay",
+    "update.mode": "none",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "workbench.settings.editor": "json",
+
+    // slopcode
+
+    // Git
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "git.replaceTagsWhenPull": true,
+    "git.suggestSmartCommit": false,
+    "git.openRepositoryInParentFolders": "always",
+
+    // why tf is this a thing, I trust them bro
+    "security.workspace.trust.untrustedFiles": "open",
+    "json.schemaDownload.trustedDomains": {
+        "https://biomejs.dev": true,
+        "https://developer.microsoft.com/json-schemas/": true,
+        "https://docs.trickfirerobotics.com": true,
+        "https://github.com": true,
+        "https://json-schema.org/": true,
+        "https://json.schemastore.org/": true,
+        "https://jsonresume.org": true,
+        "https://raw.githubusercontent.com": true,
+        "https://raw.githubusercontent.com/devcontainers/spec/": true,
+        "https://raw.githubusercontent.com/microsoft/vscode/": true,
+        "https://schemastore.azurewebsites.net/": true,
+        "https://spec.openapis.org/": true,
+        "https://www.schemastore.org/": true
+    },
+
+    // ------------------------------------------------------------
+    // EXTENSIONS CONFIG
+    // ------------------------------------------------------------
+
+    // @ext esbenp.prettier-vscode
+    "prettier.tabWidth": 4,
+    "prettier.printWidth": 100,
+
+    // @ext ms-azuretools.vscode-docker
+    "docker.extension.dockerEngineAvailabilityPrompt": false,
+    "[dockerfile]": {
+        "editor.semanticHighlighting.enabled": false
+    },
+
+    // @ext geequlim.godot-tools
+    "godotTools.editorPath.godot4": "/Applications/Godot.app/Contents/MacOS/Godot",
+
+    // @ext pixl-garden.BongoCat
+    "workbench.productIconTheme": "bongocat",
+    "docker.extension.enableComposeLanguageServer": false,
+
+    // @ext github.vscode-github-actions
+    "yaml.disableSchemaDetection": [
+        "**/.github/workflows/*.yml",
+        "**/.github/workflows/*.yaml",
+        "**/.gitea/workflows/*.yml",
+        "**/.gitea/workflows/*.yaml",
+        "**/.forgejo/workflows/*.yml",
+        "**/.forgejo/workflows/*.yaml"
+    ],
+
+    // Rest of unsorted autogened settings slop :3
+    "prettier.trailingComma": "none",
+    "lldb.suppressUpdateNotifications": true,
+    "shfmt.executablePath": "/home/elara/.local/bin/shfmt",
+    "redhat.telemetry.enabled": false,
+    "makefile.configureOnOpen": true,
+    "cmake.ignoreCMakeListsMissing": true,
+    "js/ts.experimental.useTsgo": true,
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "diffEditor.ignoreTrimWhitespace": false,
+    "workbench.editorAssociations": {
+        "{git,gitlens,chat-editing-snapshot-text-model,copilot,git-graph,git-graph-3}:/**/*.qrc": "default",
+        "*.qrc": "qt-core.qrcEditor"
+    },
+    "qt-core.additionalQtPaths": [
+        {
+            "name": "Qt-6.10.2-linux-g++-arm64_from_PATH",
+            "path": "/usr/bin/qmake"
+        }
+    ],
+    "[mdx]": {
+        "editor.wordWrap": "on",
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "workbench.experimental.modernUI": false,
+    "qt-core.showWelcomePageOnActivation": false,
+    "update.showReleaseNotes": false,
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "[java]": {
+        "editor.defaultFormatter": "redhat.java"
+    },
+    "terminal.integrated.initialHint": false,
+    "remote.autoForwardPortsSource": "hybrid",
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "go.toolsManagement.autoUpdate": true,
+    "java.debug.settings.vmArgs": "-ea",
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+}

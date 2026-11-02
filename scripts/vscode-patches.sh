@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
-#@ patch vscode with the system font
+#@ patch vscode with custom css and the system font
 set -euo pipefail
 
+ROOT="$(dirname "$(realpath "$0")")/.."
+CSS_SRC="$ROOT/config/code/custom.css"
 FONT="Terminess Nerd Font Mono"
 
 # visual-studio-code-bin's resources/app path varies between AUR package
@@ -19,8 +21,10 @@ fi
 
 sudo chown -R "$(whoami)" "$(dirname "$VSCODE")"
 
+CSS_TARGET="$VSCODE/out/vs/workbench/workbench.desktop.main.css"
 JS_TARGET="$VSCODE/out/vs/workbench/workbench.desktop.main.js"
 PRODUCT_JSON="$VSCODE/product.json"
+CSS_MARKER="/* dotfiles:custom-css */"
 JS_MARKER="/* dotfiles:font */"
 
 FONT_CSS="body{--vscode-font-family:\"$FONT\";}.linux{font-family:\"$FONT\",sans-serif!important;}.monaco-workbench input,.monaco-workbench select,.monaco-workbench textarea,.monaco-workbench .monaco-inputbox{font-family:\"$FONT\",sans-serif!important;}"
@@ -40,6 +44,19 @@ EOF
 }
 
 if [[ "${1:-}" == "--force" ]]; then
+	echo "✦ Stripping CSS patch..."
+	python3 - "$CSS_TARGET" "$CSS_MARKER" <<'EOF'
+import sys, subprocess
+path, marker = sys.argv[1], sys.argv[2]
+content = open(path).read()
+idx = content.find(marker)
+if idx != -1:
+    subprocess.run(["sudo","tee",path], input=(content[:idx].rstrip()+"\n").encode(), capture_output=True, check=True)
+    print("  stripped")
+else:
+    print("  nothing to strip")
+EOF
+
 	echo "✦ Stripping JS font injection..."
 	python3 - "$JS_TARGET" "$JS_MARKER" <<'EOF'
 import sys, subprocess
@@ -72,6 +89,19 @@ print(f"  restored {count} occurrences")
 EOF
 	echo "✦ done - restart VS Code to apply"
 	exit 0
+fi
+
+# CSS layout tweaks (optional - only applied if config/code/custom.css exists)
+if [[ ! -f "$CSS_SRC" ]]; then
+	echo "✦ No custom.css found, skipping CSS patch"
+elif grep -qF "$CSS_MARKER" "$CSS_TARGET" 2>/dev/null; then
+	echo "✦ CSS already patched"
+else
+	{
+		printf '\n%s\n' "$CSS_MARKER"
+		cat "$CSS_SRC"
+	} | sudo tee -a "$CSS_TARGET" >/dev/null
+	echo "✦ CSS patched"
 fi
 
 if grep -qF "$JS_MARKER" "$JS_TARGET" 2>/dev/null; then

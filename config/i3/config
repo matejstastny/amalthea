@@ -21,8 +21,8 @@ font pango:Terminess Nerd Font Mono 10
 
 # no gaps, thin borders: old tiling WMs butted windows edge to edge, and on a
 # 1366x768 panel every reclaimed pixel matters anyway
-gaps inner 0
-gaps outer 0
+gaps inner 6
+gaps outer 6
 
 default_border pixel 1
 default_floating_border pixel 1
