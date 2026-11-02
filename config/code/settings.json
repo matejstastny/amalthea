@@ -1,6 +1,6 @@
 // meowsers :3
 {
-    "workbench.colorTheme": "Catppuccin Noir",
+    "workbench.colorTheme": "One Dark Pro Night Flat",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.editor.showTabs": "single",
     "workbench.editor.empty.hint": "hidden",
@@ -198,5 +198,6 @@
     "java.debug.settings.vmArgs": "-ea",
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+    },
+    "chat.disableAIFeatures": true
 }
