@@ -84,7 +84,7 @@ return {
                 highlight_overrides = {
                     mocha = function(c)
                         return {
-                            -- Telescope - clear all pane backgrounds for the floating look
+                            -- telescope - square box, no pane fill, terminal bg shows through
                             TelescopeNormal            = { bg = "NONE" },
                             TelescopePromptNormal      = { bg = "NONE" },
                             TelescopeResultsNormal     = { bg = "NONE" },
@@ -99,9 +99,35 @@ return {
                             TelescopeSelection         = { bg = c.surface0 },
                             TelescopeSelectionCaret    = { fg = c.mauve },
                             TelescopeMatching          = { fg = c.pink, style = { "bold" } },
-                            -- Floating windows (hover, signature, blink menu)
+                            -- floating windows (hover, signature, mason, lazy, which-key)
                             NormalFloat                = { bg = "NONE" },
                             FloatBorder                = { bg = "NONE", fg = c.overlay2 },
+                            FloatTitle                 = { bg = "NONE", fg = c.mauve },
+                            -- completion menu (blink.cmp)
+                            Pmenu                      = { bg = "NONE" },
+                            PmenuSel                   = { bg = c.surface0 },
+                            BlinkCmpMenu               = { bg = "NONE" },
+                            BlinkCmpMenuBorder         = { bg = "NONE", fg = c.overlay2 },
+                            BlinkCmpDoc                = { bg = "NONE" },
+                            BlinkCmpDocBorder          = { bg = "NONE", fg = c.overlay2 },
+                            BlinkCmpSignatureHelp      = { bg = "NONE" },
+                            BlinkCmpSignatureHelpBorder = { bg = "NONE", fg = c.overlay2 },
+                            -- which-key, mason, lazy popups
+                            WhichKeyNormal             = { bg = "NONE" },
+                            WhichKeyBorder             = { bg = "NONE", fg = c.overlay2 },
+                            WhichKeyFloat              = { bg = "NONE" },
+                            MasonNormal                = { bg = "NONE" },
+                            LazyNormal                 = { bg = "NONE" },
+                            -- neo-tree panel, flat like an old file list
+                            NeoTreeNormal              = { bg = "NONE" },
+                            NeoTreeNormalNC            = { bg = "NONE" },
+                            NeoTreeEndOfBuffer         = { bg = "NONE" },
+                            NeoTreeWinSeparator        = { bg = "NONE", fg = c.surface2 },
+                            -- tabline / winbar, flat
+                            TabLine                    = { bg = "NONE" },
+                            TabLineFill                = { bg = "NONE" },
+                            TabLineSel                 = { bg = c.surface0, fg = c.mauve },
+                            WinSeparator               = { bg = "NONE", fg = c.surface2 },
                             -- Cursor line / column subtle
                             CursorLine                 = { bg = c.mantle },
                             -- Diagnostics virtual text a touch dimmer
@@ -114,8 +140,18 @@ return {
                 },
             })
             vim.cmd("colorscheme catppuccin-mocha")
-            -- Clear any remaining opaque highlights after the colorscheme loads
-            for _, g in ipairs({ "WinBar", "WinBarNC", "NeoTreeNormal", "NeoTreeNormalNC" }) do
+            -- catch-all: some plugins (lazy-loaded popups especially) re-assert an
+            -- opaque bg on their own highlight groups after the colorscheme loads,
+            -- so clear them again here to keep the terminal bg showing through
+            for _, g in ipairs({
+                "WinBar", "WinBarNC",
+                "NeoTreeNormal", "NeoTreeNormalNC", "NeoTreeEndOfBuffer",
+                "StatusLine", "StatusLineNC",
+                "TabLine", "TabLineFill",
+                "Pmenu",
+                "MasonNormal", "LazyNormal",
+                "WhichKeyNormal", "WhichKeyFloat",
+            }) do
                 vim.api.nvim_set_hl(0, g, { bg = "NONE" })
             end
         end,
@@ -153,18 +189,20 @@ return {
             require("lualine").setup({
                 options = {
                     theme                = theme,
-                    component_separators = { left = "·", right = "·" },
+                    icons_enabled        = false,
+                    -- plain pipes instead of powerline arrows - same separator polybar uses
+                    component_separators = { left = "|", right = "|" },
                     section_separators   = { left = "", right = "" },
                     globalstatus         = true,
                     disabled_filetypes   = { statusline = { "dashboard", "snacks_dashboard" } },
                 },
                 sections = {
-                    lualine_a = { { "mode", fmt = function(s) return s:sub(1, 1) end } },
+                    lualine_a = { { "mode", fmt = function(s) return "[" .. s:sub(1, 1) .. "]" end } },
                     lualine_b = {
-                        { "branch", icon = "" },
+                        { "branch" },
                         {
                             "diff",
-                            symbols = { added = "+ ", modified = "~ ", removed = "- " },
+                            symbols = { added = "+", modified = "~", removed = "-" },
                             diff_color = {
                                 added    = { fg = c.green },
                                 modified = { fg = c.yellow },
@@ -173,16 +211,16 @@ return {
                         },
                     },
                     lualine_c = {
-                        { "filename", path = 1, symbols = { modified = " ✦", readonly = " ", unnamed = "~" } },
+                        { "filename", path = 1, symbols = { modified = "[+]", readonly = "[RO]", unnamed = "~" } },
                     },
                     lualine_x = {
                         {
                             "diagnostics",
                             sources = { "nvim_lsp" },
-                            symbols = { error = " ", warn = " ", info = " ", hint = " " },
+                            symbols = { error = "E:", warn = "W:", info = "I:", hint = "H:" },
                         },
-                        { lsp_names,  color = { fg = c.mauve } },
-                        { "filetype", colored = true,          icon_only = false },
+                        { lsp_names, color = { fg = c.mauve } },
+                        { "filetype", colored = true },
                     },
                     lualine_y = {},
                     lualine_z = {
@@ -203,12 +241,24 @@ return {
         end,
     },
 
-    -- Transparent
+    -- transparent - strip bg from every group below so the terminal's own
+    -- background (set in alacritty) always shows through
     {
         "xiyaowong/transparent.nvim",
         lazy = false,
         opts = {
-            extra_groups = { "NormalFloat" },
+            extra_groups = {
+                "NormalFloat", "FloatBorder", "FloatTitle",
+                "Pmenu", "PmenuSbar", "PmenuThumb",
+                "BlinkCmpMenu", "BlinkCmpMenuBorder",
+                "BlinkCmpDoc", "BlinkCmpDocBorder",
+                "BlinkCmpSignatureHelp", "BlinkCmpSignatureHelpBorder",
+                "NeoTreeNormal", "NeoTreeNormalNC", "NeoTreeEndOfBuffer",
+                "TelescopeNormal", "TelescopeBorder",
+                "WhichKeyNormal", "WhichKeyFloat", "WhichKeyBorder",
+                "MasonNormal", "LazyNormal",
+                "TabLine", "TabLineFill", "WinBar", "WinBarNC",
+            },
         },
-    }
+    },
 }

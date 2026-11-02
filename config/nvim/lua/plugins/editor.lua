@@ -61,7 +61,7 @@ return {
         cmd = "Neotree",
         opts = {
             close_if_last_window = true,
-            popup_border_style   = "rounded",
+            popup_border_style   = "single",
             window = { width = 30 },
             filesystem = {
                 filtered_items = {
@@ -72,18 +72,26 @@ return {
                 use_libuv_file_watcher   = true,
             },
             default_component_configs = {
+                -- classic nerdtree-style +/- folders, no per-filetype icons
+                icon = {
+                    folder_closed = "+",
+                    folder_open   = "-",
+                    folder_empty  = "+",
+                    default       = " ",
+                },
                 indent = { with_expanders = true },
+                -- plain git-status letters instead of glyphs
                 git_status = {
                     symbols = {
-                        added    = "",
-                        modified = "",
-                        deleted  = "✖",
-                        renamed  = "󰁕",
-                        untracked = "",
-                        ignored   = "",
-                        unstaged  = "󰄱",
-                        staged    = "",
-                        conflict  = "",
+                        added     = "A",
+                        modified  = "M",
+                        deleted   = "D",
+                        renamed   = "R",
+                        untracked = "?",
+                        ignored   = "I",
+                        unstaged  = "U",
+                        staged    = "S",
+                        conflict  = "C",
                     },
                 },
             },
@@ -96,6 +104,7 @@ return {
         event = "VeryLazy",
         opts = {
             preset = "modern",
+            win = { border = "single" },
             spec = {
                 { "<leader>c", group = "code / lsp" },
                 { "<leader>f", group = "find" },

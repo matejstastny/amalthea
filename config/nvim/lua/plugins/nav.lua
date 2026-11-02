@@ -13,8 +13,9 @@ return {
                     layout_strategy  = "horizontal",
                     sorting_strategy = "ascending",
                     layout_config    = { prompt_position = "top", preview_width = 0.55 },
-                    prompt_prefix    = "✦ ",
-                    selection_caret  = "  ",
+                    -- plain command-prompt style cursor, no emoji
+                    prompt_prefix    = "> ",
+                    selection_caret  = "> ",
                     path_display     = { "truncate" },
                     file_ignore_patterns = { "%.git/", "node_modules/", "%.venv/", "__pycache__/" },
                 },

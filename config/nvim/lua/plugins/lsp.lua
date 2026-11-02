@@ -41,7 +41,7 @@ return {
     {
         "williamboman/mason.nvim",
         cmd = "Mason",
-        opts = { ui = { border = "rounded" } },
+        opts = { ui = { border = "single" } },
     },
 
     -- Auto-install formatters & linters that aren't language servers
@@ -130,21 +130,22 @@ return {
             "saghen/blink.cmp",
         },
         config = function()
-            -- Pretty diagnostics
+            -- plain-letter diagnostics, same convention as the gutter signs on
+            -- any old-school syntax checker (syntastic/ALE) - no nerd-font glyphs
             vim.diagnostic.config({
-                virtual_text = { prefix = "●", spacing = 2 },
+                virtual_text = { prefix = ">>", spacing = 2 },
                 signs = {
                     text = {
-                        [vim.diagnostic.severity.ERROR] = " ",
-                        [vim.diagnostic.severity.WARN]  = " ",
-                        [vim.diagnostic.severity.HINT]  = " ",
-                        [vim.diagnostic.severity.INFO]  = " ",
+                        [vim.diagnostic.severity.ERROR] = "E",
+                        [vim.diagnostic.severity.WARN]  = "W",
+                        [vim.diagnostic.severity.HINT]  = "H",
+                        [vim.diagnostic.severity.INFO]  = "I",
                     },
                 },
                 underline        = true,
                 update_in_insert = false,
                 severity_sort    = true,
-                float            = { border = "rounded", source = true },
+                float            = { border = "single", source = true },
             })
 
             -- Keymaps applied when any server attaches to a buffer

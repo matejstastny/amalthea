@@ -24,12 +24,10 @@ opt.whichwrap = "b,s,h,l,<,>,[,]"
 opt.cursorline = true
 
 if vim.g.neovide then
-    vim.g.neovide_opacity = 0.92
-    vim.g.neovide_window_blurred = true
-    vim.g.neovide_floating_blur_amount_x = 3.0
-    vim.g.neovide_floating_blur_amount_y = 3.0
-    vim.g.neovide_scroll_animation_length = 0.2
-    vim.g.neovide_cursor_vfx_mode = "railgun"
-    vim.g.neovide_cursor_animate_in_insert_mode = true
+    -- no blur, no particle trails, no smooth-scroll - snap like an old editor
+    vim.g.neovide_opacity = 1.0
+    vim.g.neovide_scroll_animation_length = 0.0
+    vim.g.neovide_cursor_animate_in_insert_mode = false
+    vim.g.neovide_cursor_animation_length = 0.0
     vim.o.guifont = "DankMono Nerd Font Mono:h16"
 end
