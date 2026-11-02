@@ -15,19 +15,18 @@ set $text    #e4e6e9
 set $ember   #6f94ac
 set $rust    #b3555a
 
-font pango:Iosevka Nerd Font 10
+font pango:Terminess Nerd Font Mono 10
 
 # look -----------------------------------------------------------------------
 
-# hyprland counts 4px around each window (so 8 between two) and 8 at the edge.
-# i3 counts the full gap between windows, and adds outer on top of inner/2,
-# so inner 8 + outer 4 lands on the same numbers
-gaps inner 8
-gaps outer 4
+# no gaps, thin borders: old tiling WMs butted windows edge to edge, and on a
+# 1366x768 panel every reclaimed pixel matters anyway
+gaps inner 0
+gaps outer 0
 
-default_border pixel 2
-default_floating_border pixel 2
-hide_edge_borders smart
+default_border pixel 1
+default_floating_border pixel 1
+hide_edge_borders none
 
 #                       border    background  text    indicator  child_border
 client.focused          $ember    $surface    $text   $ember     $ember
@@ -162,8 +161,9 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 # because the shell lives in one window, but here a terminal that refuses to
 # open on the workspace you are standing in is just in the way. session.sh
 # places its own terminal instead.
-assign [class="firefox"]    $ws3
+assign [class="Falkon"]     $ws3
 assign [class="helium"]     $ws3
+assign [class="vesktop"]    $ws4
 
 for_window [class="Zathura"] floating disable
 for_window [window_role="pop-up"] floating enable, move position center

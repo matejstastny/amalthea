@@ -47,11 +47,11 @@ i3lock \
 	--lockfailed-text="lock failed" \
 	--time-str="%H:%M" \
 	--date-str="%a %d %b" \
-	--time-font="Iosevka Nerd Font" \
-	--date-font="Iosevka Nerd Font" \
-	--layout-font="Iosevka Nerd Font" \
-	--verif-font="Iosevka Nerd Font" \
-	--wrong-font="Iosevka Nerd Font" \
+	--time-font="Terminess Nerd Font Mono" \
+	--date-font="Terminess Nerd Font Mono" \
+	--layout-font="Terminess Nerd Font Mono" \
+	--verif-font="Terminess Nerd Font Mono" \
+	--wrong-font="Terminess Nerd Font Mono" \
 	--time-size=32 \
 	--date-size=14 \
 	--verif-size=14 \

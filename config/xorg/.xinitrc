@@ -21,9 +21,6 @@ export XDG_CURRENT_DESKTOP=i3
 export GDK_BACKEND=x11
 export QT_QPA_PLATFORM=xcb
 export QT_QPA_PLATFORMTHEME=gtk3
-# gm45 tops out at gl 2.1, so firefox has to use software webrender; left on
-# auto it probes, fails, and falls back with a stutter on every start
-export MOZ_WEBRENDER=0
 export LIBGL_DRI3_DISABLE=0
 
 exec i3

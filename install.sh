@@ -24,7 +24,9 @@ pkgs=(
 	papirus-icon-theme gnome-themes-extra adwaita-icon-theme
 
 	# fonts
-	ttf-iosevka-nerd ttf-iosevkaterm-nerd ttf-nerd-fonts-symbols-mono
+	# terminus: bitmap-derived, no ligatures, cheaper to rasterize than a
+	# vector face - matches the ter-116n console font below
+	ttf-terminus-nerd
 	noto-fonts noto-fonts-emoji
 
 	# terminal + shell
@@ -54,7 +56,9 @@ pkgs=(
 	dex libnotify gtk3 gtk4
 
 	# apps
-	firefox zathura zathura-pdf-mupdf mpv
+	# falkon: QtWebEngine, so modern sites render fine, but a lighter native
+	# chrome than Firefox and it is called out as a solid pick on GL 2.1
+	falkon zathura zathura-pdf-mupdf mpv
 )
 
 log "syncing and upgrading"
@@ -63,11 +67,15 @@ sudo pacman -Syu --noconfirm --needed || { err "pacman -Syu failed"; exit 1; }
 log "installing ${#pkgs[@]} packages"
 sudo pacman -S --noconfirm --needed "${pkgs[@]}" || warn "some packages failed, see above"
 
-# things that only live in the aur. all optional - the shell aliases that use
-# them degrade to "command not found" and nothing else breaks
+# things that only live in the aur, all installed best-effort since paru may
+# not exist yet on a fresh box
 # i3lock-color replaces stock i3lock: the stock unlock ring is hardcoded
 # green and red and is the one thing here that cannot otherwise be themed
-aur=(ps_mem scc gitmux i3lock-color)
+# vesktop-bin: Discord client with Vencord (themes/plugins) built in, prebuilt
+# so no compile time on this cpu
+# vscodium-bin: prebuilt, telemetry-stripped vscode; patched below for
+# marketplace access and the system font
+aur=(ps_mem scc gitmux i3lock-color vesktop-bin vscodium-bin)
 if command -v paru >/dev/null; then
 	log "installing aur extras (${aur[*]})"
 	paru -S --noconfirm --needed --skipreview "${aur[@]}" 2>/dev/null \
@@ -205,6 +213,9 @@ fc-cache -f >/dev/null 2>&1
 cat <<'EOF'
 
 done.
+
+  one more step: $DOTFILES_DIR/scripts/vscode-patches.sh (marketplace access
+  and the system font for vscodium - safe to re-run, --force reverts it)
 
   log out of this tty and log back in on tty1 - zprofile runs startx there.
   if X does not come up, the reason is in ~/.local/state/amalthea/startx.log

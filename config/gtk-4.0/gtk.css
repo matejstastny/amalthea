@@ -40,3 +40,10 @@
 *:focus-visible {
 	outline-color: alpha(@amalthea_ember, 0.6);
 }
+
+/* square corners on the widgets libadwaita rounds by default. not exhaustive -
+ * some widgets bake their own radius into the widget template - but it covers
+ * the common ones. */
+window, button, entry, .card, popover, popover > contents, .toolbar {
+	border-radius: 0;
+}

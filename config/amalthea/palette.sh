@@ -30,5 +30,5 @@ export AM_EMBER_RAW="6f94ac"
 export AM_TEXT_RAW="e4e6e9"
 export AM_RUST_RAW="b3555a"
 
-export AM_FONT="Iosevka Nerd Font"
-export AM_FONT_TERM="IosevkaTerm Nerd Font"
+export AM_FONT="Terminess Nerd Font Mono"
+export AM_FONT_TERM="Terminess Nerd Font Mono"

@@ -4,7 +4,7 @@
 # name | pgrep -x | i3 class | workspace | command
 apps=(
 	"terminal|alacritty|Alacritty|1|alacritty"
-	"browser|firefox|firefox|3|firefox"
+	"browser|falkon|Falkon|3|falkon"
 )
 
 running() { pgrep -x "$1" >/dev/null; }

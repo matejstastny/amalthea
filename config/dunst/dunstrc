@@ -15,20 +15,20 @@
 	progress_bar_frame_width = 0
 	progress_bar_min_width = 180
 	progress_bar_max_width = 360
-	progress_bar_corner_radius = 3
+	progress_bar_corner_radius = 0
 
 	indicate_hidden = yes
-	transparency = 6
+	transparency = 0
 	separator_height = 4
 	padding = 12
 	horizontal_padding = 14
 	frame_width = 1
-	corner_radius = 10
+	corner_radius = 0
 	gap_size = 6
 	separator_color = frame
 
 	sort = yes
-	font = Iosevka Nerd Font 10
+	font = Terminess Nerd Font Mono 10
 	line_height = 0
 	markup = full
 	format = "<b>%s</b>\n%b"

@@ -1,7 +1,7 @@
 /* amalthea steel - rofi
- * one centred column, no mouse affordances, no icons bigger than the text.
- * the asahi launcher is a single list you type into and press enter; this is
- * the same shape. */
+ * one centred column, square corners, no icons, no mouse affordances - a
+ * dmenu with a box around it. the asahi launcher is a single list you type
+ * into and press enter; this is the same shape. */
 
 * {
 	base:     #0a0a0b;
@@ -21,11 +21,10 @@
 }
 
 window {
-	transparency:     "real";
 	location:         center;
 	anchor:           center;
 	width:            520px;
-	border-radius:    12px;
+	border-radius:    0px;
 	border:           1px;
 	border-color:     @muted;
 	background-color: @base;
@@ -41,7 +40,7 @@ mainbox {
 inputbar {
 	children:         [ prompt, entry ];
 	background-color: @surface;
-	border-radius:    8px;
+	border-radius:    0px;
 	padding:          10px 12px;
 	spacing:          10px;
 }
@@ -70,7 +69,7 @@ listview {
 
 element {
 	padding:       7px 12px;
-	border-radius: 8px;
+	border-radius: 0px;
 	spacing:       10px;
 	cursor:        pointer;
 }
@@ -83,11 +82,6 @@ element selected.urgent { background-color: @overlay; text-color: @amber; }
 element normal.active   { text-color: @ember; }
 element selected.active { background-color: @overlay; text-color: @ember; }
 
-element-icon {
-	size:           18px;
-	vertical-align: 0.5;
-}
-
 element-text {
 	vertical-align: 0.5;
 	text-color:     inherit;
@@ -95,7 +89,7 @@ element-text {
 
 message {
 	background-color: @surface;
-	border-radius:    8px;
+	border-radius:    0px;
 	padding:          10px 12px;
 }
 

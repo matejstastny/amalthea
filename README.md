@@ -33,9 +33,18 @@ under the same key.
 
 `amalthea steel`. A cold, near-monochrome ramp to match the black 2009
 chassis: `#0a0a0b` true near-black, steel blue `#6f94ac` as the accent, a
-paler ice blue `#9fb0ba` as the second. Font is Iosevka (IosevkaTerm for the
-monospace slot - it holds a strict cell at 10pt, which matters on a 768px
-panel).
+paler ice blue `#9fb0ba` as the second. Font is Terminus, patched as
+"Terminess Nerd Font Mono" - a bitmap-derived face with no ligatures, cheaper
+to rasterize than a vector font, and used in every slot (monospace, sans,
+serif) rather than pairing two faces.
+
+The rest of the look follows the same logic as the palette: square corners
+everywhere (`corner-radius 0` in picom, `border-radius 0` in rofi/dunst/gtk),
+no gaps between windows, full opacity with no fading, and a polybar that
+prints plain-text tags (`CPU`, `MEM`, `BAT`) instead of nerd-font glyphs. Old
+tiling-WM conventions, not a modern rice with the saturation turned down -
+and every one of those is also less compositing/rendering work per frame,
+which matters on a Core 2 Duo.
 
 `config/amalthea/palette.sh` is the source of truth; every script sources it.
 
@@ -80,8 +89,8 @@ MBR, so either one boots.
 ## install
 
 ```sh
-git clone https://github.com/matejstastny/dotfiles.git ~/dotfiles
-cd ~/dotfiles && git checkout arch
+git clone https://github.com/matejstastny/amalthea.git ~/dotfiles
+cd ~/dotfiles
 ./install.sh
 ```
 
@@ -118,12 +127,13 @@ exceptions). It never overwrites a real file.
 
 ## notes
 
-- picom costs real CPU on this chip. `pkill picom` if you want the frames back;
+- picom only does tear-free vsync now (no corners, opacity or fading to
+  composite), so it is cheap. `pkill picom` if you want it gone anyway;
   nothing depends on it.
 - mpv is set up for VA-API, so h264 decodes on the GPU. Anything above 720p is
   optimistic.
-- Firefox runs software WebRender (`MOZ_WEBRENDER=0` in `.xinitrc`) because GL
-  2.1 cannot drive the hardware path.
+- Falkon (QtWebEngine) is the default browser instead of Firefox - a lighter
+  native chrome while still rendering modern sites correctly on GL 2.1.
 - **Bun will not run on this CPU at all.** A Core 2 Duo has no SSE4.2 and bun
   needs it even in the baseline build. Node is fine. Anything else shipping
   prebuilt x86-64-v2 binaries will die with SIGILL for the same reason.

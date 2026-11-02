@@ -54,6 +54,6 @@ done
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark 2>/dev/null
 gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark 2>/dev/null
 gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark 2>/dev/null
-gsettings set org.gnome.desktop.interface font-name "Iosevka Nerd Font 10" 2>/dev/null
+gsettings set org.gnome.desktop.interface font-name "Terminess Nerd Font Mono 10" 2>/dev/null
 
 once gnome-keyring-daemon gnome-keyring-daemon --start --components=secrets,pkcs11,ssh

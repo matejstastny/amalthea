@@ -1,8 +1,7 @@
 configuration {
 	modes:                       "drun,run,window";
-	font:                        "Iosevka Nerd Font 11";
-	show-icons:                  true;
-	icon-theme:                  "Papirus-Dark";
+	font:                        "Terminess Nerd Font Mono 11";
+	show-icons:                  false;
 	drun-display-format:         "{name}";
 	display-drun:                "run";
 	display-run:                 "cmd";
