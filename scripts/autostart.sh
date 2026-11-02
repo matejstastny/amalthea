@@ -51,7 +51,11 @@ xset r rate 190 30
 xset s off
 xset -dpms
 for id in $(xinput list --id-only 2>/dev/null); do
-	xinput set-prop "$id" "libinput Natural Scrolling Enabled" 1 2>/dev/null
+	# natural scrolling only on the touchpad - an external mouse's wheel
+	# should stay regular, or it reads as "inverted"
+	if xinput list-props "$id" 2>/dev/null | grep -q "libinput Tapping Enabled"; then
+		xinput set-prop "$id" "libinput Natural Scrolling Enabled" 1 2>/dev/null
+	fi
 	xinput set-prop "$id" "libinput Tapping Enabled" 1 2>/dev/null
 	xinput set-prop "$id" "libinput Click Method Enabled" 0 1 2>/dev/null
 	xinput set-prop "$id" "libinput Accel Profile Enabled" 0 1 2>/dev/null

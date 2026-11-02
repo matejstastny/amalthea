@@ -1,43 +1,41 @@
 #!/usr/bin/env bash
-#@ patch vscodium with the system font and marketplace access
+#@ patch vscode with the system font
 set -euo pipefail
 
 FONT="Terminess Nerd Font Mono"
 
-# vscodium-bin's resources/app has moved between AUR package revisions
-# (/opt/vscodium-bin vs /usr/share/vscodium-bin), so find it instead of
-# hardcoding it
-for root in /usr/share/vscodium-bin /opt/vscodium-bin /usr/lib/vscodium-bin /usr/share/codium; do
+# visual-studio-code-bin's resources/app path varies between AUR package
+# revisions, so find it instead of hardcoding it
+for root in /opt/visual-studio-code-bin /usr/share/visual-studio-code-bin /usr/lib/code-bin /usr/share/code; do
 	if [[ -f "$root/resources/app/product.json" ]]; then
 		VSCODE="$root/resources/app"
 		break
 	fi
 done
 if [[ -z "${VSCODE:-}" ]]; then
-	echo "error: could not find vscodium's resources/app (checked /usr/share/vscodium-bin, /opt/vscodium-bin, /usr/lib/vscodium-bin, /usr/share/codium)" >&2
+	echo "error: could not find vscode's resources/app (checked /opt/visual-studio-code-bin, /usr/share/visual-studio-code-bin, /usr/lib/code-bin, /usr/share/code)" >&2
 	exit 1
 fi
 
 sudo chown -R "$(whoami)" "$(dirname "$VSCODE")"
 
-CSS_TARGET="$VSCODE/out/vs/workbench/workbench.desktop.main.css"
 JS_TARGET="$VSCODE/out/vs/workbench/workbench.desktop.main.js"
 PRODUCT_JSON="$VSCODE/product.json"
 JS_MARKER="/* dotfiles:font */"
 
 FONT_CSS="body{--vscode-font-family:\"$FONT\";}.linux{font-family:\"$FONT\",sans-serif!important;}.monaco-workbench input,.monaco-workbench select,.monaco-workbench textarea,.monaco-workbench .monaco-inputbox{font-family:\"$FONT\",sans-serif!important;}"
 
-update_checksums() {
-	python3 - "$CSS_TARGET" "$JS_TARGET" "$PRODUCT_JSON" <<'EOF'
-import sys, hashlib, base64, json, subprocess
-css_path, js_path, product_path = sys.argv[1], sys.argv[2], sys.argv[3]
-def sha256b64(p): return base64.b64encode(hashlib.sha256(open(p,"rb").read()).digest()).decode()
+# some -bin repackagings ship a product.json checksums map that is already
+# stale for files this script never touches (a packaging artifact, not
+# something this script causes) and trips an "installation appears corrupt"
+# dialog on launch. drop it rather than leave it half-updated.
+drop_checksums() {
+	python3 - "$PRODUCT_JSON" <<'EOF'
+import sys, json, subprocess
+product_path = sys.argv[1]
 product = json.loads(open(product_path).read())
-product.setdefault("checksums", {}).update({
-    "vs/workbench/workbench.desktop.main.css": sha256b64(css_path),
-    "vs/workbench/workbench.desktop.main.js":  sha256b64(js_path),
-})
-subprocess.run(["sudo","tee",product_path], input=json.dumps(product,indent="\t").encode(), capture_output=True, check=True)
+if product.pop("checksums", None) is not None:
+    subprocess.run(["sudo","tee",product_path], input=json.dumps(product,indent="\t").encode(), capture_output=True, check=True)
 EOF
 }
 
@@ -72,25 +70,9 @@ new = content.replace(font, orig)
 subprocess.run(["sudo","tee",path], input=new.encode(), capture_output=True, check=True)
 print(f"  restored {count} occurrences")
 EOF
-	update_checksums
-	echo "✦ done - restart VSCodium to apply"
+	echo "✦ done - restart VS Code to apply"
 	exit 0
 fi
-
-echo "✦ Pointing extensionsGallery at the real marketplace..."
-python3 - "$PRODUCT_JSON" <<'EOF'
-import sys, json, subprocess
-path = sys.argv[1]
-product = json.loads(open(path).read())
-product["extensionsGallery"] = {
-    "serviceUrl": "https://marketplace.visualstudio.com/_apis/public/gallery",
-    "cacheUrl": "https://vscode.blob.core.windows.net/gallery/index",
-    "itemUrl": "https://marketplace.visualstudio.com/items",
-    "controlUrl": "",
-    "recommendationsUrl": ""
-}
-subprocess.run(["sudo","tee",path], input=json.dumps(product, indent="\t").encode(), capture_output=True, check=True)
-EOF
 
 if grep -qF "$JS_MARKER" "$JS_TARGET" 2>/dev/null; then
 	echo "✦ JS font already injected"
@@ -134,9 +116,9 @@ else
 	echo "✦ Renderer font already patched"
 fi
 
-update_checksums
+drop_checksums
 
 echo "✦ giving perms..."
 sudo chown -R "$(whoami)" "$(dirname "$VSCODE")"
 
-echo "✦ done - restart VSCodium to apply"
+echo "✦ done - restart VS Code to apply"

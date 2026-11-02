@@ -161,7 +161,6 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 # because the shell lives in one window, but here a terminal that refuses to
 # open on the workspace you are standing in is just in the way. session.sh
 # places its own terminal instead.
-assign [class="falkon"]     $ws3
 assign [class="helium"]     $ws3
 assign [class="vesktop"]    $ws4
 

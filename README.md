@@ -132,8 +132,8 @@ exceptions). It never overwrites a real file.
   nothing depends on it.
 - mpv is set up for VA-API, so h264 decodes on the GPU. Anything above 720p is
   optimistic.
-- Falkon (QtWebEngine) is the default browser instead of Firefox - a lighter
-  native chrome while still rendering modern sites correctly on GL 2.1.
+- Helium (Chromium-based, no Google services) is the default browser instead
+  of Firefox.
 - **Bun will not run on this CPU at all.** A Core 2 Duo has no SSE4.2 and bun
   needs it even in the baseline build. Node is fine. Anything else shipping
   prebuilt x86-64-v2 binaries will die with SIGILL for the same reason.

@@ -56,9 +56,7 @@ pkgs=(
 	dex libnotify gtk3 gtk4
 
 	# apps
-	# falkon: QtWebEngine, so modern sites render fine, but a lighter native
-	# chrome than Firefox and it is called out as a solid pick on GL 2.1
-	falkon zathura zathura-pdf-mupdf mpv
+	zathura zathura-pdf-mupdf mpv
 )
 
 log "syncing and upgrading"
@@ -73,9 +71,9 @@ sudo pacman -S --noconfirm --needed "${pkgs[@]}" || warn "some packages failed, 
 # green and red and is the one thing here that cannot otherwise be themed
 # vesktop-bin: Discord client with Vencord (themes/plugins) built in, prebuilt
 # so no compile time on this cpu
-# vscodium-bin: prebuilt, telemetry-stripped vscode; patched below for
-# marketplace access and the system font
-aur=(ps_mem scc gitmux i3lock-color vesktop-bin vscodium-bin)
+# visual-studio-code-bin: prebuilt, patched below for the system font
+# helium-browser-bin: Chromium-based, no Google services - the default browser
+aur=(ps_mem scc gitmux i3lock-color vesktop-bin visual-studio-code-bin helium-browser-bin)
 if command -v paru >/dev/null; then
 	log "installing aur extras (${aur[*]})"
 	paru -S --noconfirm --needed --skipreview "${aur[@]}" 2>/dev/null \
@@ -214,8 +212,8 @@ cat <<'EOF'
 
 done.
 
-  one more step: $DOTFILES_DIR/scripts/vscode-patches.sh (marketplace access
-  and the system font for vscodium - safe to re-run, --force reverts it)
+  one more step: $DOTFILES_DIR/scripts/vscode-patches.sh (the system font
+  for vscode - safe to re-run, --force reverts it)
 
   log out of this tty and log back in on tty1 - zprofile runs startx there.
   if X does not come up, the reason is in ~/.local/state/amalthea/startx.log

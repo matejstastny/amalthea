@@ -5,7 +5,7 @@
 # defaults
 export EDITOR="nvim"
 export VISUAL="nvim"
-export BROWSER="falkon"
+export BROWSER="helium-browser"
 export TERMINAL="alacritty"
 export DOTFILES_DIR="$HOME/dotfiles"
 
