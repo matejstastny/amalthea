@@ -1,8 +1,3 @@
-# amalthea - i3
-# binds are deliberately the same as the hyprland config on asahi: mod is ALT,
-# alt+return opens a terminal, alt+space opens the launcher, alt+w closes.
-# anything that was a quickshell menu there is a rofi script here.
-
 set $mod Mod1
 set $dots $HOME/dotfiles
 

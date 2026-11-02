@@ -1,8 +1,3 @@
-# amalthea - zsh
-# same shape as the asahi zshrc so muscle memory carries; wayland tools and the
-# sdks that are not on this machine are the only things dropped.
-
-# defaults
 export EDITOR="nvim"
 export VISUAL="nvim"
 export BROWSER="helium-browser"
@@ -55,7 +50,6 @@ alias ports='lsof -iTCP -sTCP:LISTEN -n -P'
 alias d='trash'
 alias c='clear'
 alias info='scc'
-alias mem='ps_mem'
 
 alias cd='z'
 alias ls='echo && eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
@@ -92,8 +86,6 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#5a5f66,italic"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
-# bat: base16 reads the terminal's own 16 colours, so it tracks the alacritty
-# palette instead of needing its own theme file
 export BAT_THEME="base16"
 export MANPAGER="sh -c 'awk '\''{ gsub(/\x1B\[[0-9;]*m/, \"\", \$0); gsub(/.\x08/, \"\", \$0); print }'\'' | bat -p -lman'"
 
@@ -156,7 +148,3 @@ fi
 # zoxide wants to be last
 eval "$(zoxide init zsh)"
 
-# LEAVE AT THE BOTTOM
-if [[ "$TERM" == "alacritty" ]]; then
-	tm
-fi

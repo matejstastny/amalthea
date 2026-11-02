@@ -19,10 +19,8 @@ gui:
       - '#e0d4f0'
     searchingActiveBorderColor:
       - '#c47a9b'
-
-  authorColors:
-    '*': '#9b8ab0'
-
+    authorColors:
+      '*': '#9b8ab0'
 keybinding:
   universal:
     quit-alt1: '<esc>'
