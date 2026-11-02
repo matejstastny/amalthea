@@ -45,7 +45,7 @@ pkgs=(
 	pamixer pulsemixer pavucontrol playerctl
 
 	# net + bluetooth
-	networkmanager network-manager-applet bluez bluez-utils blueman tailscale
+	networkmanager bluez bluez-utils tailscale
 
 	# laptop
 	tlp tlp-rdw brightnessctl acpi powertop zram-generator

@@ -30,15 +30,6 @@ once polkit-gnome /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # come after xrandr has settled
 "$dots/scripts/display.sh" auto
 
-# tray applets only after the bar owns the systray selection. started earlier
-# they find no tray, exit 0 immediately, and look like they were never launched
-for _ in $(seq 1 60); do
-	xdotool search --class '[Pp]olybar' >/dev/null 2>&1 && break
-	sleep 0.1
-done
-sleep 1
-once nm-applet nm-applet --indicator
-once blueman-applet blueman-applet
 
 # input: match the asahi hyprland settings
 xset r rate 190 30
