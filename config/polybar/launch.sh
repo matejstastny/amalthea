@@ -17,7 +17,13 @@ for m in $(polybar --list-monitors | cut -d: -f1); do
 	# no tray: nm-applet/blueman-applet icons never matched the theme, and
 	# wifi/bluetooth already have their own rofi menus (alt+n, alt+b) plus a
 	# click on the NET module, so the tray had nothing worth keeping
-	MONITOR="$m" TRAY_POS=none polybar --reload main >/dev/null 2>&1 &
+	#
+	# 9>&- closes the lock fd in this background child before it execs.
+	# polybar is long-running, so without this it inherits fd 9 and holds
+	# the flock for as long as it's alive - meaning every run after the
+	# first deadlocks forever waiting for a lock a dead script no longer
+	# needs but a live polybar is still unknowingly sitting on.
+	MONITOR="$m" TRAY_POS=none polybar --reload main 9>&- >/dev/null 2>&1 &
 done
 
 # hold the lock until the bars have actually bound, or a second caller races
