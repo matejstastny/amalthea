@@ -26,8 +26,15 @@ restore)
 	if [[ -s $state ]] && [[ -f $(< "$state") ]]; then
 		set_bg "$(< "$state")"
 	else
-		# no wallpaper yet: a flat base colour still looks deliberate
-		hsetroot -solid "#0a0a0b" 2>/dev/null || xsetroot -solid "#0a0a0b"
+		# no wallpaper yet: a flat field in the palette's own base colour still
+		# looks deliberate. generated with imagemagick (already a hard
+		# dependency) instead of hsetroot/xsetroot, which this box does not
+		# install and which also can't be fed through the per-monitor set_bg
+		# split above.
+		source "$HOME/.config/amalthea/palette.sh" 2>/dev/null
+		flat="$HOME/.cache/amalthea-flat.png"
+		[[ -f $flat ]] || magick -size 1920x1080 "xc:${AM_BASE:-#0a0a0b}" "$flat"
+		set_bg "$flat"
 	fi
 	;;
 pick)
@@ -35,7 +42,7 @@ pick)
 		\( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.webp' \) | sort)
 
 	if [[ ${#walls[@]} -eq 0 ]]; then
-		notify-send "󰸉  wallpaper" "no images in ~/wallpapers" -t 3000
+		notify-send "wallpaper" "no images in ~/wallpapers" -t 3000
 		exit 1
 	fi
 
