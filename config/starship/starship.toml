@@ -1,6 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-palette = "ember"
+palette = "steel"
 
 format = """
 [✦ ](purple)$directory$git_branch$git_status$character"""
@@ -9,13 +9,13 @@ right_format = """$cmd_duration$bun$nodejs$golang$python$rust$ruby"""
 
 add_newline = false
 
-[palettes.ember]
-purple = "#c4745a"
-rose   = "#c9a05e"
-dim    = "#a8928a"
+[palettes.steel]
+purple = "#6f94ac"
+rose   = "#9fb0ba"
+dim    = "#8b9097"
 
 [directory]
-style              = "#f0e4de bold"
+style              = "#e4e6e9 bold"
 truncation_length  = 4
 fish_style_pwd_dir_length = 1
 format             = "[$path]($style)"

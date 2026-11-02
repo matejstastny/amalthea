@@ -27,7 +27,7 @@ restore)
 		set_bg "$(< "$state")"
 	else
 		# no wallpaper yet: a flat base colour still looks deliberate
-		hsetroot -solid "#16100f" 2>/dev/null || xsetroot -solid "#16100f"
+		hsetroot -solid "#0a0a0b" 2>/dev/null || xsetroot -solid "#0a0a0b"
 	fi
 	;;
 pick)

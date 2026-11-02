@@ -1,17 +1,17 @@
-/* amalthea ember - rofi
+/* amalthea steel - rofi
  * one centred column, no mouse affordances, no icons bigger than the text.
  * the asahi launcher is a single list you type into and press enter; this is
  * the same shape. */
 
 * {
-	base:     #16100f;
-	surface:  #241a18;
-	overlay:  #30231f;
-	muted:    #4a3832;
-	dim:      #a8928aff;
-	text:     #f0e4deff;
-	ember:    #c4745aff;
-	amber:    #c9a05eff;
+	base:     #0a0a0b;
+	surface:  #16181b;
+	overlay:  #202327;
+	muted:    #3a3e44;
+	dim:      #8b9097ff;
+	text:     #e4e6e9ff;
+	ember:    #6f94acff;
+	amber:    #9fb0baff;
 
 	background-color: transparent;
 	text-color:       @text;

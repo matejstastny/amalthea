@@ -6,14 +6,14 @@
 set $mod Mod1
 set $dots $HOME/dotfiles
 
-set $base    #16100f
-set $surface #241a18
-set $overlay #30231f
-set $muted   #4a3832
-set $dim     #a8928a
-set $text    #f0e4de
-set $ember   #c4745a
-set $rust    #a85540
+set $base    #0a0a0b
+set $surface #16181b
+set $overlay #202327
+set $muted   #3a3e44
+set $dim     #8b9097
+set $text    #e4e6e9
+set $ember   #6f94ac
+set $rust    #b3555a
 
 font pango:Iosevka Nerd Font 10
 

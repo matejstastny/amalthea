@@ -1,16 +1,16 @@
-/* amalthea ember - gtk accents.
- * Adwaita-dark does the heavy lifting; this only moves the blue accent and the
- * window background onto the ember ramp so gtk dialogs sit next to a terminal
+/* amalthea steel - gtk accents.
+ * Adwaita-dark does the heavy lifting; this only moves the accent and the
+ * window background onto the steel ramp so gtk dialogs sit next to a terminal
  * without looking borrowed. */
 
-@define-color amalthea_base    #16100f;
-@define-color amalthea_surface #241a18;
-@define-color amalthea_overlay #30231f;
-@define-color amalthea_muted   #4a3832;
-@define-color amalthea_text    #f0e4de;
-@define-color amalthea_dim     #a8928a;
-@define-color amalthea_mantle  #1b1413;
-@define-color amalthea_ember   #c4745a;
+@define-color amalthea_base    #0a0a0b;
+@define-color amalthea_surface #16181b;
+@define-color amalthea_overlay #202327;
+@define-color amalthea_muted   #3a3e44;
+@define-color amalthea_text    #e4e6e9;
+@define-color amalthea_dim     #8b9097;
+@define-color amalthea_mantle  #0f1012;
+@define-color amalthea_ember   #6f94ac;
 
 @define-color accent_color       @amalthea_ember;
 @define-color accent_bg_color    @amalthea_ember;
@@ -36,7 +36,7 @@
 @define-color borders            @amalthea_muted;
 @define-color insensitive_fg_color @amalthea_dim;
 
-/* the stock focus ring is a blue halo and nothing else in the session is blue */
+/* pin the focus ring to the palette's own accent instead of GNOME's default blue */
 *:focus-visible {
 	outline-color: alpha(@amalthea_ember, 0.6);
 }

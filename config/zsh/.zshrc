@@ -88,7 +88,7 @@ source $HOME/.config/shell/yazi.sh || echo "error: yazi failed to source"
 
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null \
 	|| source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6b524a,italic"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#5a5f66,italic"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
@@ -102,9 +102,9 @@ source <(fzf --zsh)
 export FZF_CTRL_R_OPTS="--style minimal --color 16 --info inline --no-sort --no-preview"
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
 export FZF_DEFAULT_OPTS="
-  --color=fg:#a8928a,fg+:#fff8f4,bg+:#241a18,hl:#c4745a,hl+:#c9a05e
-  --color=info:#a8928a,prompt:#c4745a,pointer:#c4745a,marker:#c9a05e,border:#4a3832
-  --color=header:#a8928a,spinner:#c4745a
+  --color=fg:#8b9097,fg+:#ffffff,bg+:#16181b,hl:#6f94ac,hl+:#9fb0ba
+  --color=info:#8b9097,prompt:#6f94ac,pointer:#6f94ac,marker:#9fb0ba,border:#3a3e44
+  --color=header:#8b9097,spinner:#6f94ac
 "
 
 # completions ---------------------------------------------------------------------------------

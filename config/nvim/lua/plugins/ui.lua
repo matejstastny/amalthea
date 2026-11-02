@@ -1,13 +1,13 @@
 local ember = {
-    base    = "#16100f",
-    surface = "#241a18",
-    overlay = "#30231f",
-    muted   = "#4a3832",
-    ember   = "#c4745a", -- accent
-    amber   = "#c9a05e", -- ochre
-    text    = "#f0e4de",
-    dim     = "#a8928a",
-    bright  = "#fff8f4",
+    base    = "#0a0a0b",
+    surface = "#16181b",
+    overlay = "#202327",
+    muted   = "#3a3e44",
+    ember   = "#6f94ac", -- accent
+    amber   = "#9fb0ba", -- ice
+    text    = "#e4e6e9",
+    dim     = "#8b9097",
+    bright  = "#ffffff",
 }
 
 return {
@@ -26,37 +26,37 @@ return {
                     keywords  = {},
                     functions = { "italic" },
                 },
-                -- Remap the whole mocha palette onto the amalthea ember ramp. Neutrals become
-                -- the warm near-blacks; accents lean terracotta/ochre while keeping the
+                -- Remap the whole mocha palette onto the amalthea steel ramp. Neutrals become
+                -- true near-blacks; accents lean steel-blue/ice while keeping the
                 -- diagnostic colours (red/yellow/green/blue) distinguishable.
                 color_overrides = {
                     mocha = {
-                        rosewater = "#f2dcd0",
-                        flamingo  = "#e0b09c",
+                        rosewater = "#d4d6da",
+                        flamingo  = "#a9b0b8",
                         pink      = ember.amber,
                         mauve     = ember.ember,
-                        red       = "#d9705e",
-                        maroon    = "#c98878",
-                        peach     = "#d6975e",
-                        yellow    = "#d9b478",
-                        green     = "#a8b27d",
-                        teal      = "#9cbdb1",
-                        sky       = "#a3b8c9",
-                        sapphire  = "#93a8bd",
-                        blue      = "#8fa3b8",
-                        lavender  = "#c4919f",
+                        red       = "#b3555a",
+                        maroon    = "#96585c",
+                        peach     = "#998f7a",
+                        yellow    = "#a89a6e",
+                        green     = "#8fab97",
+                        teal      = "#8fb3ac",
+                        sky       = "#8fabc0",
+                        sapphire  = "#6a8ba3",
+                        blue      = "#5f7e91",
+                        lavender  = "#8a7a95",
                         text      = ember.text,
-                        subtext1  = "#dbc8bf",
+                        subtext1  = "#c3c6cb",
                         subtext0  = ember.dim,
-                        overlay2  = "#8f7268",
-                        overlay1  = "#75594f",
-                        overlay0  = "#5c443c",
+                        overlay2  = "#6b7078",
+                        overlay1  = "#565b63",
+                        overlay0  = "#434850",
                         surface2  = ember.muted,
-                        surface1  = "#3a2a26",
+                        surface1  = "#262a2f",
                         surface0  = ember.overlay,
                         base      = ember.base,
                         mantle    = ember.surface,
-                        crust     = "#0d0908",
+                        crust     = "#050506",
                     },
                 },
                 integrations = {

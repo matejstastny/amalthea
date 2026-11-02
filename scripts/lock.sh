@@ -6,14 +6,14 @@ pgrep -x i3lock >/dev/null && exit 0
 # i3lock-color, not stock i3lock: the stock unlock ring is hardcoded green and
 # red, which is the one thing on this machine that cannot be themed otherwise.
 # colours are rrggbbaa, so they carry an alpha byte the palette file does not.
-base=16100f
-surface=241a18
-muted=4a3832
-dim=a8928a
-text=f0e4de
-ember=c4745a
-amber=c9a05e
-rust=a85540
+base=0a0a0b
+surface=16181b
+muted=3a3e44
+dim=8b9097
+text=e4e6e9
+ember=6f94ac
+amber=9fb0ba
+rust=b3555a
 
 i3lock \
 	--nofork \

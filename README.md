@@ -26,16 +26,16 @@ under the same key.
 | screenshots    | grim/slurp | maim/slop  | |
 | clipboard      | wl-clipboard | xclip    | |
 | lock           | Quickshell | i3lock-color + xss-lock | stock i3lock hardcodes a green ring |
-| editor         | neovim     | neovim     | same config, ember palette |
+| editor         | neovim     | neovim     | same config, steel palette |
 | multiplexer    | tmux       | tmux       | same config |
 
 ## theme
 
-`amalthea ember`. Amalthea is the reddest object in the solar system, so the
-ramp is warm where the asahi one is cool: `#16100f` near-black, terracotta
-`#c4745a` as the accent, ochre `#c9a05e` as the second. Font is Iosevka
-(IosevkaTerm for the monospace slot - it holds a strict cell at 10pt, which
-matters on a 768px panel).
+`amalthea steel`. A cold, near-monochrome ramp to match the black 2009
+chassis: `#0a0a0b` true near-black, steel blue `#6f94ac` as the accent, a
+paler ice blue `#9fb0ba` as the second. Font is Iosevka (IosevkaTerm for the
+monospace slot - it holds a strict cell at 10pt, which matters on a 768px
+panel).
 
 `config/amalthea/palette.sh` is the source of truth; every script sources it.
 

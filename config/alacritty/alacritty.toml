@@ -34,75 +34,75 @@ save_to_clipboard = true
 [mouse]
 hide_when_typing = true
 
-# colors: amalthea ember -----------------------------------------------------
+# colors: amalthea steel ------------------------------------------------------
 
 [colors.primary]
-background = "#16100f"
-foreground = "#f0e4de"
-dim_foreground = "#a8928a"
-bright_foreground = "#fff8f4"
+background = "#0a0a0b"
+foreground = "#e4e6e9"
+dim_foreground = "#8b9097"
+bright_foreground = "#ffffff"
 
 [colors.cursor]
-text = "#16100f"
-cursor = "#c4745a"
+text = "#0a0a0b"
+cursor = "#6f94ac"
 
 [colors.vi_mode_cursor]
-text = "#16100f"
-cursor = "#c9a05e"
+text = "#0a0a0b"
+cursor = "#9fb0ba"
 
 [colors.selection]
 text = "CellForeground"
-background = "#30231f"
+background = "#202327"
 
 [colors.search.matches]
-foreground = "#16100f"
-background = "#c9a05e"
+foreground = "#0a0a0b"
+background = "#9fb0ba"
 
 [colors.search.focused_match]
-foreground = "#16100f"
-background = "#c4745a"
+foreground = "#0a0a0b"
+background = "#6f94ac"
 
 [colors.footer_bar]
-foreground = "#f0e4de"
-background = "#241a18"
+foreground = "#e4e6e9"
+background = "#16181b"
 
 [colors.hints.start]
-foreground = "#16100f"
-background = "#c9a05e"
+foreground = "#0a0a0b"
+background = "#9fb0ba"
 
 [colors.hints.end]
-foreground = "#16100f"
-background = "#a8928a"
+foreground = "#0a0a0b"
+background = "#8b9097"
 
 [colors.normal]
-black   = "#241a18"
-red     = "#c4745a"
-green   = "#96a06b"
-yellow  = "#c9a05e"
-blue    = "#7a8fa6"
-magenta = "#b07a8a"
-cyan    = "#85a69b"
+black   = "#16181b"
+red     = "#6f94ac"
+green   = "#7a9a84"
+yellow  = "#9fb0ba"
+blue    = "#5f7e91"
+magenta = "#8a7a95"
+cyan    = "#6f9690"
 white   = "#d6c5bd"
 
 [colors.bright]
-black   = "#4a3832"
+black   = "#3a3e44"
 red     = "#d98a70"
-green   = "#a8b27d"
-yellow  = "#d9b478"
-blue    = "#93a8bd"
-magenta = "#c4919f"
-cyan    = "#9cbdb1"
-white   = "#f0e4de"
+green   = "#8fab97"
+yellow  = "#a89a6e"
+blue    = "#6a8ba3"
+magenta = "#8a7a95"
+cyan    = "#8fb3ac"
+white   = "#e4e6e9"
 
 [colors.dim]
-black   = "#1b1413"
-red     = "#a85540"
+black   = "#0f1012"
+red     = "#b3555a"
 green   = "#79824f"
 yellow  = "#a8834a"
 blue    = "#5f7285"
 magenta = "#8f616e"
 cyan    = "#6b877e"
-white   = "#a8928a"
+white   = "#8b9097"
 
 # keybinds -------------------------------------------------------------------
 # tmux owns splits and tabs, so alacritty only needs the basics
